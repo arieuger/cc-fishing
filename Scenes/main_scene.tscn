@@ -28,83 +28,101 @@ b = Vector2(432, 1)
 
 [node name="MainScene" type="Node2D"]
 
-[node name="GeneralLayer" type="CanvasLayer" parent="."]
+[node name="World" type="Node2D" parent="."]
 
-[node name="Background" type="Node2D" parent="GeneralLayer"]
+[node name="Background" type="Node2D" parent="World"]
 
-[node name="Clouds" type="Sprite2D" parent="GeneralLayer/Background"]
+[node name="Clouds" type="Sprite2D" parent="World/Background"]
 texture = ExtResource("1_52fb6")
 centered = false
 
-[node name="PlayZone" type="Node2D" parent="GeneralLayer"]
+[node name="PlayZone" type="Node2D" parent="World"]
 y_sort_enabled = true
 position = Vector2(-3, 0)
 
-[node name="Town" type="StaticBody2D" parent="GeneralLayer/PlayZone"]
+[node name="Town" type="StaticBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
 position = Vector2(2, 0)
 physics_material_override = SubResource("PhysicsMaterial_huasi")
 metadata/_edit_group_ = true
 
-[node name="TownSprite" type="Sprite2D" parent="GeneralLayer/PlayZone/Town"]
+[node name="TownSprite" type="Sprite2D" parent="World/PlayZone/Town"]
 position = Vector2(83, 158)
 texture = ExtResource("2_jv6wh")
 offset = Vector2(0, -6.725)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GeneralLayer/PlayZone/Town"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Town"]
 visible = false
 z_index = 1
 position = Vector2(10, 97)
 polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89, 105, 97, 77, 109, 34, 119, 14, 113, -10, 116)
 
-[node name="Boat" type="CharacterBody2D" parent="GeneralLayer/PlayZone"]
+[node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
-position = Vector2(239, 165)
+position = Vector2(141, 142)
 script = ExtResource("4_huasi")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="GeneralLayer/PlayZone/Boat"]
+[node name="Sprite2D" type="Sprite2D" parent="World/PlayZone/Boat"]
 position = Vector2(-1, 0.0080719)
 scale = Vector2(0.046875, 0.078251)
 texture = ExtResource("4_maf8m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Boat"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Boat"]
 position = Vector2(-1, 1.52588e-05)
 shape = SubResource("RectangleShape2D_maf8m")
 
-[node name="Limits" type="Node2D" parent="GeneralLayer/PlayZone"]
+[node name="Camera2D" type="Camera2D" parent="World/PlayZone/Boat"]
+position = Vector2(-1, 0)
+zoom = Vector2(1.665, 1.665)
+limit_left = 0
+limit_top = 0
+limit_right = 426
+limit_bottom = 240
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.42
+drag_vertical_offset = -0.73
 
-[node name="UpBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+[node name="Limits" type="Node2D" parent="World/PlayZone"]
+
+[node name="UpBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(2, 110)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/UpBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/UpBorder"]
 shape = SubResource("SegmentShape2D_huasi")
 
-[node name="DownBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+[node name="DownBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(2, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/DownBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/DownBorder"]
 shape = SubResource("SegmentShape2D_m1efj")
 
-[node name="LeftBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+[node name="LeftBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(430, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/LeftBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/LeftBorder"]
 shape = SubResource("SegmentShape2D_mai8y")
 
-[node name="RightBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+[node name="RightBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(0, 240)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/RightBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/RightBorder"]
 shape = SubResource("SegmentShape2D_76v2p")
 
-[node name="Darkener" type="ColorRect" parent="GeneralLayer"]
+[node name="DarkLayer" type="CanvasLayer" parent="."]
+
+[node name="Darkener" type="ColorRect" parent="DarkLayer"]
 material = ExtResource("2_6l7je")
-offset_right = 427.0
-offset_bottom = 240.0
+offset_right = 413.0
+offset_bottom = 104.0
+scale = Vector2(1.04, 2.32)
 
 [node name="LightLayer" type="CanvasLayer" parent="."]
 layer = 2
+follow_viewport_enabled = true
 
 [node name="TownLights" type="Sprite2D" parent="LightLayer"]
 y_sort_enabled = true
