@@ -59,7 +59,7 @@ polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89,
 
 [node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
-position = Vector2(141, 142)
+position = Vector2(138, 144)
 script = ExtResource("4_huasi")
 metadata/_edit_group_ = true
 
@@ -85,6 +85,11 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_horizontal_offset = 0.42
 drag_vertical_offset = -0.73
+drag_left_margin = 0.45
+drag_top_margin = 0.26
+drag_bottom_margin = 0.45
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Limits" type="Node2D" parent="World/PlayZone"]
 
