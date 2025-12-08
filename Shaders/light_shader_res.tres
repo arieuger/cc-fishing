@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://comsnh3ahrisy"]
+
+[ext_resource type="Shader" uid="uid://c4fy4nhhr8gp0" path="res://Shaders/light_shader.gdshader" id="1_uwxsk"]
+
+[resource]
+shader = ExtResource("1_uwxsk")
+shader_parameter/intensity = 1.35

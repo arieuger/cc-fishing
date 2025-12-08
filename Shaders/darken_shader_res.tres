@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxfihkrqs1ael"]
+
+[ext_resource type="Shader" uid="uid://bx1dsv5aodbfq" path="res://Shaders/darken_shader.gdshader" id="1_rlf0i"]
+
+[resource]
+shader = ExtResource("1_rlf0i")
+shader_parameter/dark_amount = 0.484
+shader_parameter/tint_color = Color(0.133333, 0.12549, 0.203922, 1)

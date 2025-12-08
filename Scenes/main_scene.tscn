@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://c1soqfi8e6x46"]
+
+[ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
+[ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
+[ext_resource type="Texture2D" uid="uid://c4cal3fad0sd8" path="res://Assets/pobo.png" id="2_jv6wh"]
+[ext_resource type="Script" uid="uid://bcobfpde7uoba" path="res://Scripts/boat.gd" id="4_huasi"]
+[ext_resource type="Material" uid="uid://comsnh3ahrisy" path="res://Shaders/light_shader_res.tres" id="4_iacmt"]
+[ext_resource type="Texture2D" uid="uid://wj1kjc43iw4e" path="res://icon.svg" id="4_maf8m"]
+[ext_resource type="Texture2D" uid="uid://bntp3k844t2ed" path="res://Assets/luzpobo.png" id="4_x6ack"]
+[ext_resource type="PackedScene" uid="uid://cth1pfbi6i071" path="res://Scenes/fishing_game.tscn" id="6_6ev3c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_huasi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_maf8m"]
+size = Vector2(6, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_huasi"]
+b = Vector2(431, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_m1efj"]
+b = Vector2(0, 241)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mai8y"]
+b = Vector2(0, 241)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_76v2p"]
+b = Vector2(432, 1)
+
+[node name="MainScene" type="Node2D"]
+
+[node name="GeneralLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Node2D" parent="GeneralLayer"]
+
+[node name="Clouds" type="Sprite2D" parent="GeneralLayer/Background"]
+texture = ExtResource("1_52fb6")
+centered = false
+
+[node name="PlayZone" type="Node2D" parent="GeneralLayer"]
+y_sort_enabled = true
+position = Vector2(-3, 0)
+
+[node name="Town" type="StaticBody2D" parent="GeneralLayer/PlayZone"]
+y_sort_enabled = true
+position = Vector2(2, 0)
+physics_material_override = SubResource("PhysicsMaterial_huasi")
+metadata/_edit_group_ = true
+
+[node name="TownSprite" type="Sprite2D" parent="GeneralLayer/PlayZone/Town"]
+position = Vector2(83, 158)
+texture = ExtResource("2_jv6wh")
+offset = Vector2(0, -6.725)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GeneralLayer/PlayZone/Town"]
+visible = false
+z_index = 1
+position = Vector2(10, 97)
+polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89, 105, 97, 77, 109, 34, 119, 14, 113, -10, 116)
+
+[node name="Boat" type="CharacterBody2D" parent="GeneralLayer/PlayZone"]
+y_sort_enabled = true
+position = Vector2(239, 165)
+script = ExtResource("4_huasi")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GeneralLayer/PlayZone/Boat"]
+position = Vector2(-1, 0.0080719)
+scale = Vector2(0.046875, 0.078251)
+texture = ExtResource("4_maf8m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Boat"]
+position = Vector2(-1, 1.52588e-05)
+shape = SubResource("RectangleShape2D_maf8m")
+
+[node name="Limits" type="Node2D" parent="GeneralLayer/PlayZone"]
+
+[node name="UpBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+position = Vector2(2, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/UpBorder"]
+shape = SubResource("SegmentShape2D_huasi")
+
+[node name="DownBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+position = Vector2(2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/DownBorder"]
+shape = SubResource("SegmentShape2D_m1efj")
+
+[node name="LeftBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+position = Vector2(430, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/LeftBorder"]
+shape = SubResource("SegmentShape2D_mai8y")
+
+[node name="RightBorder" type="StaticBody2D" parent="GeneralLayer/PlayZone/Limits"]
+position = Vector2(0, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralLayer/PlayZone/Limits/RightBorder"]
+shape = SubResource("SegmentShape2D_76v2p")
+
+[node name="Darkener" type="ColorRect" parent="GeneralLayer"]
+material = ExtResource("2_6l7je")
+offset_right = 427.0
+offset_bottom = 240.0
+
+[node name="LightLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TownLights" type="Sprite2D" parent="LightLayer"]
+y_sort_enabled = true
+material = ExtResource("4_iacmt")
+position = Vector2(82, 158)
+texture = ExtResource("4_x6ack")
+offset = Vector2(0, -6.725)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="FishingGame" parent="UILayer" instance=ExtResource("6_6ev3c")]
+visible = false
+offset_left = 131.0
+offset_top = 72.0
+offset_right = -197.0
+offset_bottom = -158.0
