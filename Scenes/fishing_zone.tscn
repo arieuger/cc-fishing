@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=3 uid="uid://cuucqvhtfgtal"]
+
+[ext_resource type="Script" uid="uid://c3f003t36lobj" path="res://Scripts/fishing_zone.gd" id="1_x0gu0"]
+[ext_resource type="PackedScene" uid="uid://cth1pfbi6i071" path="res://Scenes/fishing_game.tscn" id="2_6pcqv"]
+[ext_resource type="Texture2D" uid="uid://cu3xd7mekbme" path="res://Assets/burbullas.png" id="3_vl8v2"]
+[ext_resource type="Texture2D" uid="uid://cj24j201s7bk5" path="res://Assets/exclamation.png" id="4_bi2iw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mai8y"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(0, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76v2p"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(16, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drdnd"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(32, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioaeq"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(48, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ewk0"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(64, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhp3t"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(80, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnsmo"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(96, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psl12"]
+atlas = ExtResource("3_vl8v2")
+region = Rect2(112, 0, 16, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oyb3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mai8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76v2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drdnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioaeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ewk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhp3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnsmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psl12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mai8y"]
+radius = 10.6667
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ebs2"]
+atlas = ExtResource("4_bi2iw")
+region = Rect2(1, 1, 3, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyb3p"]
+atlas = ExtResource("4_bi2iw")
+region = Rect2(7, 1, 3, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvnna"]
+atlas = ExtResource("4_bi2iw")
+region = Rect2(13, 1, 3, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b48ew"]
+atlas = ExtResource("4_bi2iw")
+region = Rect2(19, 1, 3, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8edxt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ebs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyb3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvnna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b48ew")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FishingZone" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_x0gu0")
+fishing_scene = ExtResource("2_6pcqv")
+
+[node name="Bubbles" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_oyb3p")
+autoplay = "default"
+frame_progress = 0.502264
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mai8y")
+
+[node name="Exclamation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -18.6667)
+sprite_frames = SubResource("SpriteFrames_8edxt")
+autoplay = "default"
+frame_progress = 0.256759
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
