@@ -34,5 +34,15 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.normalized() * max_speed
 
 	move_and_slide()
+	
+	_check_collisions()
+	
+func _check_collisions() -> void:
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		
+		if (collider as Node).is_in_group("damage_zone"):
+			print("choquei")
 
 	

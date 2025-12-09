@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=20 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cb68nuqbp6wjo" path="res://Assets/poboreflexo.png" id="5_m1efj"]
 [ext_resource type="PackedScene" uid="uid://cuucqvhtfgtal" path="res://Scenes/fishing_zone.tscn" id="6_drdnd"]
 [ext_resource type="Script" uid="uid://dsfbhghvfdy5a" path="res://Scripts/fish_panel.gd" id="11_76v2p"]
+[ext_resource type="Texture2D" uid="uid://dbv1vai85rbjx" path="res://Assets/empty_heart.png" id="12_drdnd"]
+[ext_resource type="Texture2D" uid="uid://c66tuvngxsad7" path="res://Assets/full_heart.png" id="13_ioaeq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_huasi"]
 
@@ -48,7 +50,7 @@ centered = false
 y_sort_enabled = true
 position = Vector2(-3, 0)
 
-[node name="Town" type="StaticBody2D" parent="World/PlayZone"]
+[node name="Town" type="StaticBody2D" parent="World/PlayZone" groups=["damage_zone"]]
 y_sort_enabled = true
 position = Vector2(2, 0)
 physics_material_override = SubResource("PhysicsMaterial_huasi")
@@ -59,7 +61,7 @@ position = Vector2(83, 158)
 texture = ExtResource("2_jv6wh")
 offset = Vector2(0, -6.725)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Town"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Town" groups=["damage_zone"]]
 visible = false
 z_index = 1
 position = Vector2(10, 97)
@@ -202,5 +204,52 @@ offset_right = 140.0
 offset_bottom = 97.0
 theme_override_font_sizes/font_size = 6
 text = "Gardar peixe"
+
+[node name="EmptyHearts" type="HBoxContainer" parent="UILayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -43.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = 17.0
+grow_horizontal = 0
+
+[node name="EmptyHeart2" type="TextureRect" parent="UILayer/EmptyHearts"]
+layout_mode = 2
+texture = ExtResource("12_drdnd")
+stretch_mode = 4
+
+[node name="EmptyHeart1" type="TextureRect" parent="UILayer/EmptyHearts"]
+layout_mode = 2
+texture = ExtResource("12_drdnd")
+stretch_mode = 4
+
+[node name="EmptyHeart3" type="TextureRect" parent="UILayer/EmptyHearts"]
+layout_mode = 2
+texture = ExtResource("12_drdnd")
+stretch_mode = 4
+
+[node name="FullHearts" type="HBoxContainer" parent="UILayer"]
+offset_left = 383.0
+offset_top = 5.0
+offset_right = 418.0
+offset_bottom = 17.0
+grow_horizontal = 0
+
+[node name="EmptyHeart2" type="TextureRect" parent="UILayer/FullHearts"]
+layout_mode = 2
+texture = ExtResource("13_ioaeq")
+stretch_mode = 4
+
+[node name="EmptyHeart1" type="TextureRect" parent="UILayer/FullHearts"]
+layout_mode = 2
+texture = ExtResource("13_ioaeq")
+stretch_mode = 4
+
+[node name="EmptyHeart3" type="TextureRect" parent="UILayer/FullHearts"]
+layout_mode = 2
+texture = ExtResource("13_ioaeq")
+stretch_mode = 4
 
 [connection signal="pressed" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_close_btn_pressed"]
