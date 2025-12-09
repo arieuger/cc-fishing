@@ -1,4 +1,5 @@
 extends Control
+class_name FishingGame
 
 @onready var bar: ColorRect = $Bar
 @onready var cursor: ColorRect = $Bar/Cursor
@@ -7,6 +8,8 @@ extends Control
 
 @export_range(0.5, 3.0, 0.1)
 var difficulty: float = 1.0
+
+var fishing_zone: FishingZone
 
 var _cursor_norm: float = 0.5 
 var _cursor_vel: float = 0.0 
@@ -93,4 +96,10 @@ func _detect_overlapping(delta: float):
 	
 	_catch_progress = clamp(_catch_progress, 0.0, 1.0)
 	catch_bar.value = _catch_progress * 100.0
+	
+	# TODO: Accións precisas para gañar ou perder
+	if fishing_zone != null and (_catch_progress == 1.0 or _catch_progress == 0.0):
+		fishing_zone.boat.fishing = false
+		fishing_zone.queue_free()
+		queue_free()
 	

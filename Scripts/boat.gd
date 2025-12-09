@@ -1,12 +1,16 @@
 extends CharacterBody2D
+class_name Boat
 
 @export var acceleration: float = 100.0
 @export var max_speed: float = 80.0
 @export var friction: float = 250.0
 @export var turn_speed: float = 3.0
 
+var fishing := false
+
 
 func _physics_process(delta: float) -> void:
+	if fishing: return
 	var turn_input := Input.get_axis("ui_left", "ui_right")
 	var thrust_input := Input.get_axis("ui_down", "ui_up")  
 

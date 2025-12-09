@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FishDatabase" load_steps=4 format=3 uid="uid://btmhiai383a68"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/fish_data.gd" id="1_1asr5"]
+[ext_resource type="Resource" uid="uid://b83ojiooxmamj" path="res://Fishes/polbo_arousa.tres" id="2_1dx2m"]
+[ext_resource type="Script" uid="uid://dwidmpxk6qydy" path="res://Scripts/fish_database.gd" id="2_mweep"]
+
+[resource]
+script = ExtResource("2_mweep")
+fishes = Array[ExtResource("1_1asr5")]([ExtResource("2_1dx2m")])

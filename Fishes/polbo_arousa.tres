@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://b83ojiooxmamj"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/fish_data.gd" id="1_nsw65"]
+
+[resource]
+script = ExtResource("1_nsw65")
+id = "polbo_arousa"
+display_name = "Polbo de Arousa"
+description = "Quedou na nasa un polbo que viña de Arousa: traía os grelos prendidos nunha pata"
+min_level = 0.5
+max_level = 0.7

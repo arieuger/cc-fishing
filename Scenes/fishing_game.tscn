@@ -13,10 +13,12 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -328.0
-offset_bottom = -230.0
+offset_right = -426.0
+offset_bottom = -240.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.6, 0.44)
+pivot_offset = Vector2(-49, 0)
 script = ExtResource("1_cigb7")
 
 [node name="Bar" type="ColorRect" parent="."]
@@ -45,3 +47,5 @@ offset_left = 91.0
 offset_right = 98.0
 offset_bottom = 10.0
 color = Color(1, 0.46, 0.523, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
