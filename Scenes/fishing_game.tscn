@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cth1pfbi6i071"]
 
-[ext_resource type="Script" uid="uid://b7hxos0vclktx" path="res://Scripts/fishing_game.gd" id="1_cigb7"]
+[ext_resource type="Script" uid="uid://b7hxos0vclktx" path="res://Scripts/Fishes/fishing_game.gd" id="1_cigb7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cigb7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

@@ -18,6 +18,9 @@ func _process(_delta: float) -> void:
 		boat.fishing = true
 		_exclamation.visible = false
 		
+		var selectedFish: FishData = GameManager.get_random_for_level()
+		print(selectedFish.display_name)
+		
 		var fish_game := fishing_scene.instantiate() as FishingGame
 		fish_game.difficulty = 0.5
 		fish_game.fishing_zone = self
@@ -41,4 +44,5 @@ func _on_body_exited(body:Node2D) -> void:
 		_exclamation.visible = false
 		
 func _on_tree_exiting() -> void:
+	GameManager.spawn_zones[GameManager.zone_level].connect_zone_signal(self)
 	zone_exiting.emit()

@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://comsnh3ahrisy" path="res://Shaders/light_shader_res.tres" id="4_iacmt"]
 [ext_resource type="Texture2D" uid="uid://wj1kjc43iw4e" path="res://icon.svg" id="4_maf8m"]
 [ext_resource type="Texture2D" uid="uid://bntp3k844t2ed" path="res://Assets/luzpobo.png" id="4_x6ack"]
-[ext_resource type="Script" uid="uid://ce74ohedwixhs" path="res://Scripts/fish_spawner.gd" id="5_76v2p"]
+[ext_resource type="Script" uid="uid://ce74ohedwixhs" path="res://Scripts/Fishes/fish_spawner.gd" id="5_76v2p"]
 [ext_resource type="Texture2D" uid="uid://cb68nuqbp6wjo" path="res://Assets/poboreflexo.png" id="5_m1efj"]
 [ext_resource type="PackedScene" uid="uid://cth1pfbi6i071" path="res://Scenes/fishing_game.tscn" id="6_6ev3c"]
 [ext_resource type="PackedScene" uid="uid://cuucqvhtfgtal" path="res://Scenes/fishing_zone.tscn" id="6_drdnd"]
@@ -34,6 +34,11 @@ b = Vector2(432, 1)
 [node name="World" type="Node2D" parent="."]
 
 [node name="Background" type="Node2D" parent="World"]
+
+[node name="TownSea" type="Sprite2D" parent="World/Background"]
+z_index = -2
+position = Vector2(141, 195)
+texture = ExtResource("5_m1efj")
 
 [node name="Clouds" type="Sprite2D" parent="World/Background"]
 texture = ExtResource("1_52fb6")
@@ -126,11 +131,6 @@ fishing_zone_scene = ExtResource("6_drdnd")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL1"]
 position = Vector2(192, 53)
 polygon = PackedVector2Array(64, 59, -134, 60, -28, 99, -30, 129, -125, 168, -175, 162, -186, 168, -184, 183, 126, 177)
-
-[node name="Poboreflexo" type="Sprite2D" parent="World"]
-z_index = -2
-position = Vector2(141, 195)
-texture = ExtResource("5_m1efj")
 
 [node name="DarkLayer" type="CanvasLayer" parent="."]
 

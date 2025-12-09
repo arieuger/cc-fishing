@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbyk6iricxsv7"]
+
+[ext_resource type="Script" uid="uid://cqyphfa16e1s2" path="res://Scripts/game_manager.gd" id="1_oj352"]
+[ext_resource type="Resource" uid="uid://btmhiai383a68" path="res://Fishes/fishes_db.tres" id="2_e5fcp"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_oj352")
+fish_database = ExtResource("2_e5fcp")

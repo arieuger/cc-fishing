@@ -1,17 +1,21 @@
 extends Area2D
 class_name FishSpawner
 
+@export var level := 0
 @export var fishing_zone_scene: PackedScene
 @onready var _col_shape: CollisionPolygon2D = $CollisionPolygon2D
 
 func _ready() -> void:
+	GameManager.spawn_zones[level] = self
 	call_deferred("spawn_fish")
 
 func spawn_fish():
 	var zone: FishingZone = fishing_zone_scene.instantiate()
-	zone.zone_exiting.connect(_on_zone_exiting)
 	get_parent().add_child(zone)
 	zone.global_position = _get_random_point()
+	
+func connect_zone_signal(zone: FishingZone):
+	zone.zone_exiting.connect(_on_zone_exiting)
 	
 func _on_zone_exiting() -> void:
 	var wait_time := randf_range(1,3)
