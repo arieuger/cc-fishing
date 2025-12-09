@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://y4vsvf8x1i00"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_qyj12"]
+
+[resource]
+script = ExtResource("1_qyj12")
+id = "polbo_ghalos"
+display_name = "Polbo que fuxe"
+description = "Outro polbo que caeu. Viña escapando dos ghalos"
+level = 0
+min_difficulty = 0.5
+max_difficulty = 1.0

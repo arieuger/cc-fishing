@@ -5,11 +5,13 @@ class_name FishingGame
 @onready var cursor: ColorRect = $Bar/Cursor
 @onready var fish: ColorRect = $Bar/Fish
 @onready var catch_bar: ProgressBar = $Bar/CatchBar
+@onready var fish_ui_panel: Panel = $/root/MainScene/UILayer/FishPanel
 
 @export_range(0.5, 3.0, 0.1)
 var difficulty: float = 1.0
 
 var fishing_zone: FishingZone
+var fish_data: FishData
 
 var _cursor_norm: float = 0.5 
 var _cursor_vel: float = 0.0 
@@ -30,8 +32,8 @@ const FISH_MAX_SPEED: float = 1.5
 
 func _ready() -> void:
 	_catch_progress = catch_bar.value / 100
+	difficulty = randf_range(fish_data.min_difficulty, fish_data.max_difficulty)
 	
-
 func _process(delta: float) -> void:
 	_update_cursor(delta, difficulty)
 	_update_fish(delta, difficulty)
@@ -97,9 +99,15 @@ func _detect_overlapping(delta: float):
 	_catch_progress = clamp(_catch_progress, 0.0, 1.0)
 	catch_bar.value = _catch_progress * 100.0
 	
-	# TODO: Accións precisas para gañar ou perder
 	if fishing_zone != null and (_catch_progress == 1.0 or _catch_progress == 0.0):
-		fishing_zone.boat.fishing = false
+		if _catch_progress == 1.0:
+			GameManager.boat.showing_ui = true
+			fish_ui_panel.visible = true
+			(fish_ui_panel.find_child("FishTitle") as RichTextLabel).text = fish_data.display_name
+			(fish_ui_panel.find_child("FishDescription") as RichTextLabel).text = fish_data.description
+			fish_data.used = true
+			
+		GameManager.boat.fishing = false
 		fishing_zone.queue_free()
 		queue_free()
 	

@@ -7,10 +7,13 @@ class_name Boat
 @export var turn_speed: float = 3.0
 
 var fishing := false
+var showing_ui := false
 
+func _ready() -> void:
+	GameManager.boat = self
 
 func _physics_process(delta: float) -> void:
-	if fishing: return
+	if fishing or showing_ui: return
 	var turn_input := Input.get_axis("ui_left", "ui_right")
 	var thrust_input := Input.get_axis("ui_down", "ui_up")  
 

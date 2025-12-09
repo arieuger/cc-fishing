@@ -9,20 +9,16 @@ signal zone_exiting
 var _is_boat_inside := false
 var _is_fishing_game_running := false
 
-var boat: Boat
-
 func _process(_delta: float) -> void:
-	if boat == null or !_is_boat_inside or _is_fishing_game_running: return
+	if !_is_boat_inside or _is_fishing_game_running: return
 	if Input.is_action_just_pressed("ui_accept"):
 		_is_fishing_game_running = true
-		boat.fishing = true
+		GameManager.boat.fishing = true
 		_exclamation.visible = false
 		
-		var selectedFish: FishData = GameManager.get_random_for_level()
-		print(selectedFish.display_name)
-		
+		var selected_fish: FishData = GameManager.get_random_for_level()		
 		var fish_game := fishing_scene.instantiate() as FishingGame
-		fish_game.difficulty = 0.5
+		fish_game.fish_data = selected_fish
 		fish_game.fishing_zone = self
 		var ui_layer := get_node("/root/MainScene/UILayer")
 		ui_layer.add_child(fish_game)
@@ -32,15 +28,13 @@ func _process(_delta: float) -> void:
 	
 
 func _on_body_entered(body:Node2D) -> void:
-	if body.name == "Boat": 
-		boat = body as Boat
+	if body.name == "Boat":
 		_is_boat_inside = true
 		_exclamation.visible = true
 
 func _on_body_exited(body:Node2D) -> void:
 	if body.name == "Boat":
-		_is_boat_inside = false 
-		boat = null
+		_is_boat_inside = false
 		_exclamation.visible = false
 		
 func _on_tree_exiting() -> void:

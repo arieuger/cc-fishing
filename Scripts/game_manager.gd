@@ -5,7 +5,7 @@ extends Node
 var zone_level := 0
 var player_life := 3
 var spawn_zones: Dictionary[int, FishSpawner] = {}
-
+var boat: Boat
 
 func get_random_for_level() -> FishData:
 	var candidates: Array[FishData] = []

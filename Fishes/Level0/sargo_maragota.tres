@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://duanv3hcojb74"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_lkqh8"]
+
+[resource]
+script = ExtResource("1_lkqh8")
+id = "sargo_maragota"
+display_name = "Sargo ou maragota"
+description = "Sexa sargo ou maragota, vai para a pota"
+level = 0
+min_difficulty = 0.5
+max_difficulty = 1.0

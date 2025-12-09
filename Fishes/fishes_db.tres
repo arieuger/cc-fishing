@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="FishDatabase" load_steps=4 format=3 uid="uid://btmhiai383a68"]
+[gd_resource type="Resource" script_class="FishDatabase" load_steps=8 format=3 uid="uid://btmhiai383a68"]
 
 [ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_1asr5"]
-[ext_resource type="Resource" uid="uid://b83ojiooxmamj" path="res://Fishes/polbo_arousa.tres" id="2_1dx2m"]
 [ext_resource type="Script" uid="uid://dwidmpxk6qydy" path="res://Scripts/Fishes/fish_database.gd" id="2_mweep"]
+[ext_resource type="Resource" uid="uid://b83ojiooxmamj" path="res://Fishes/Level0/polbo_arousa.tres" id="2_xnrt1"]
+[ext_resource type="Resource" uid="uid://y4vsvf8x1i00" path="res://Fishes/Level0/polbo_galos.tres" id="3_dah3y"]
+[ext_resource type="Resource" uid="uid://rttib3q0dv8m" path="res://Fishes/Level0/robaliza_despistada.tres" id="4_dtctu"]
+[ext_resource type="Resource" uid="uid://duanv3hcojb74" path="res://Fishes/Level0/sargo_maragota.tres" id="5_d8b73"]
+[ext_resource type="Resource" uid="uid://bql7jakxp8n1e" path="res://Fishes/Level0/xardinha_sardinha.tres" id="6_m5260"]
 
 [resource]
 script = ExtResource("2_mweep")
-fishes = Array[ExtResource("1_1asr5")]([ExtResource("2_1dx2m")])
+fishes = Array[ExtResource("1_1asr5")]([ExtResource("2_xnrt1"), ExtResource("3_dah3y"), ExtResource("4_dtctu"), ExtResource("5_d8b73"), ExtResource("6_m5260")])

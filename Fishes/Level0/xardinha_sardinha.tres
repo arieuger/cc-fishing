@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://bql7jakxp8n1e"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_x5ox6"]
+
+[resource]
+script = ExtResource("1_x5ox6")
+id = "xardinha"
+display_name = "Xardiña ou sardiña"
+description = "Unha xardiña, heina preparar ao espeto como se fose sardiña"
+level = 0
+min_difficulty = 0.5
+max_difficulty = 1.0
