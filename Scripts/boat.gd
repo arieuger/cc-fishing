@@ -5,36 +5,44 @@ class_name Boat
 @export var max_speed: float = 80.0
 @export var friction: float = 250.0
 @export var turn_speed: float = 3.0
+@export var knockback_duration: float = 0.25
+@export var collision_pushback: float = 7.5
+@export var collision_nudge: float = 2.0  
 
 var fishing := false
 var showing_ui := false
+var knockback_time := 0.0
 
 func _ready() -> void:
 	GameManager.boat = self
 
 func _physics_process(delta: float) -> void:
 	if fishing or showing_ui: return
-	var turn_input := Input.get_axis("ui_left", "ui_right")
-	var thrust_input := Input.get_axis("ui_down", "ui_up")  
-
-	rotation -= -turn_input * turn_speed * delta
-
-	var forward := Vector2.UP.rotated(rotation)
-
-	if thrust_input != 0.0:
-		velocity += forward * thrust_input * acceleration * delta
-	else:
-		if velocity.length() > 0.0:
-			var v_dir := velocity.normalized()
-			var v_mag := velocity.length()
-			v_mag = max(v_mag - friction * delta, 0.0)
-			velocity = v_dir * v_mag
-
-	if velocity.length() > max_speed:
-		velocity = velocity.normalized() * max_speed
+	
+	if knockback_time <= 0.0:
+		knockback_time = 0.0
+		var turn_input := Input.get_axis("ui_left", "ui_right")
+		var thrust_input := Input.get_axis("ui_down", "ui_up")  
+		
+		rotation -= -turn_input * turn_speed * delta
+		
+		var forward := Vector2.UP.rotated(rotation)
+		
+		if thrust_input != 0.0:
+			velocity += forward * thrust_input * acceleration * delta
+		else:
+			if velocity.length() > 0.0:
+				var v_dir := velocity.normalized()
+				var v_mag := velocity.length()
+				v_mag = max(v_mag - friction * delta, 0.0)
+				velocity = v_dir * v_mag
+		
+		if velocity.length() > max_speed:
+			velocity = velocity.normalized() * max_speed
+	
+	else: knockback_time -= delta
 
 	move_and_slide()
-	
 	_check_collisions()
 	
 func _check_collisions() -> void:
@@ -42,7 +50,16 @@ func _check_collisions() -> void:
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
 		
-		if (collider as Node).is_in_group("damage_zone"):
-			print("choquei")
+		if knockback_time == 0.0 and collider is Node and (collider as Node).is_in_group("damage_zone"):
+			var normal: Vector2 = collision.get_normal()
+			knockback_time = knockback_duration
+			global_position += normal * collision_nudge
+			var vel_into_wall := velocity.dot(normal)
+			if vel_into_wall < 0.0:
+				velocity -= normal * vel_into_wall
+			velocity += normal * collision_pushback
+			
+			GameManager.update_life()
+			
 
 	

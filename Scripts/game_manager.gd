@@ -1,9 +1,11 @@
 extends Node
 
+@onready var hearts_panel: BoxContainer = $/root/MainScene/UILayer/FullHearts
+
 @export var fish_database: FishDatabase
 
 var zone_level := 0
-var player_life := 3
+var player_life := 4
 var spawn_zones: Dictionary[int, FishSpawner] = {}
 var boat: Boat
 
@@ -19,4 +21,12 @@ func get_random_for_level() -> FishData:
 		return get_random_for_level() 
 	
 	else: return candidates[randi() % candidates.size()]
+	
+func update_life(damage := true) -> void:
+	if player_life > 0:
+		player_life -= 1
+		print(hearts_panel.get_children().size())
+		hearts_panel.get_children()[player_life - 1].visible = false 
+		
+	# TODO: Condicón de morte, gañar vida
 		

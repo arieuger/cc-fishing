@@ -62,14 +62,13 @@ texture = ExtResource("2_jv6wh")
 offset = Vector2(0, -6.725)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Town" groups=["damage_zone"]]
-visible = false
 z_index = 1
-position = Vector2(10, 97)
-polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89, 105, 97, 77, 109, 34, 119, 14, 113, -10, 116)
+position = Vector2(11, 97)
+polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89, 105, 97, 89, 100, 76, 107, 40, 115, 14, 111, -10, 114)
 
 [node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
-position = Vector2(138, 144)
+position = Vector2(155, 195)
 script = ExtResource("4_huasi")
 metadata/_edit_group_ = true
 
@@ -230,24 +229,33 @@ layout_mode = 2
 texture = ExtResource("12_drdnd")
 stretch_mode = 4
 
+[node name="EmptyHeart4" type="TextureRect" parent="UILayer/EmptyHearts"]
+layout_mode = 2
+texture = ExtResource("12_drdnd")
+stretch_mode = 4
+
 [node name="FullHearts" type="HBoxContainer" parent="UILayer"]
-offset_left = 383.0
+offset_left = 373.0
 offset_top = 5.0
-offset_right = 418.0
+offset_right = 421.0
 offset_bottom = 17.0
-grow_horizontal = 0
 
-[node name="EmptyHeart2" type="TextureRect" parent="UILayer/FullHearts"]
+[node name="Heart2" type="TextureRect" parent="UILayer/FullHearts"]
 layout_mode = 2
 texture = ExtResource("13_ioaeq")
 stretch_mode = 4
 
-[node name="EmptyHeart1" type="TextureRect" parent="UILayer/FullHearts"]
+[node name="Heart1" type="TextureRect" parent="UILayer/FullHearts"]
 layout_mode = 2
 texture = ExtResource("13_ioaeq")
 stretch_mode = 4
 
-[node name="EmptyHeart3" type="TextureRect" parent="UILayer/FullHearts"]
+[node name="Heart3" type="TextureRect" parent="UILayer/FullHearts"]
+layout_mode = 2
+texture = ExtResource("13_ioaeq")
+stretch_mode = 4
+
+[node name="Heart4" type="TextureRect" parent="UILayer/FullHearts"]
 layout_mode = 2
 texture = ExtResource("13_ioaeq")
 stretch_mode = 4
