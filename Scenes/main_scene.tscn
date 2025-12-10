@@ -93,7 +93,15 @@ shader_parameter/intensity = 1.35
 
 [node name="MainScene" type="Node2D"]
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.strings.bank", "res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.bank"]
+
 [node name="World" type="Node2D" parent="."]
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="World"]
+event_name = "event:/Music"
+event_guid = "{eab27bb6-2162-450b-872e-8f133184efbb}"
+autoplay = true
 
 [node name="Background" type="Node2D" parent="World"]
 
