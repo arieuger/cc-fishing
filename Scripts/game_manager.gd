@@ -25,7 +25,6 @@ func get_random_for_level() -> FishData:
 func update_life(damage := true) -> void:
 	if player_life > 0:
 		player_life -= 1
-		print(hearts_panel.get_children().size())
 		hearts_panel.get_children()[player_life - 1].visible = false 
 		
 	# TODO: Condicón de morte, gañar vida

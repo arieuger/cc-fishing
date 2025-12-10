@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=33 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -6,12 +6,16 @@
 [ext_resource type="Script" uid="uid://bcobfpde7uoba" path="res://Scripts/boat.gd" id="4_huasi"]
 [ext_resource type="Material" uid="uid://comsnh3ahrisy" path="res://Shaders/light_shader_res.tres" id="4_iacmt"]
 [ext_resource type="Texture2D" uid="uid://wj1kjc43iw4e" path="res://icon.svg" id="4_maf8m"]
-[ext_resource type="Texture2D" uid="uid://bntp3k844t2ed" path="res://Assets/luzpobo.png" id="4_x6ack"]
 [ext_resource type="Script" uid="uid://ce74ohedwixhs" path="res://Scripts/Fishes/fish_spawner.gd" id="5_76v2p"]
 [ext_resource type="Texture2D" uid="uid://cb68nuqbp6wjo" path="res://Assets/poboreflexo.png" id="5_m1efj"]
 [ext_resource type="PackedScene" uid="uid://cuucqvhtfgtal" path="res://Scenes/fishing_zone.tscn" id="6_drdnd"]
+[ext_resource type="Texture2D" uid="uid://dadbcj6ba68f8" path="res://Assets/yellow_buoy.png" id="8_7ewk0"]
 [ext_resource type="Script" uid="uid://dsfbhghvfdy5a" path="res://Scripts/fish_panel.gd" id="11_76v2p"]
+[ext_resource type="Script" uid="uid://vssyogqu4s4c" path="res://Scripts/light_house_light.gd" id="12_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://dbv1vai85rbjx" path="res://Assets/empty_heart.png" id="12_drdnd"]
+[ext_resource type="Texture2D" uid="uid://d06wicla72h27" path="res://Assets/luzpobo-faro.png" id="12_gnsmo"]
+[ext_resource type="Texture2D" uid="uid://bhcu4ls7gqawd" path="res://Assets/luzpobo-sen-faro.png" id="12_lhp3t"]
+[ext_resource type="Shader" uid="uid://c4fy4nhhr8gp0" path="res://Shaders/light_shader.gdshader" id="12_psl12"]
 [ext_resource type="Texture2D" uid="uid://c66tuvngxsad7" path="res://Assets/full_heart.png" id="13_ioaeq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_huasi"]
@@ -22,14 +26,66 @@ size = Vector2(6, 10)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_huasi"]
 b = Vector2(431, 0)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_m1efj"]
-b = Vector2(0, 241)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_mai8y"]
-b = Vector2(0, 241)
-
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_76v2p"]
 b = Vector2(432, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_m1efj"]
+b = Vector2(0, 304)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mai8y"]
+b = Vector2(3, 303)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7ewk0"]
+a = Vector2(3, -51)
+b = Vector2(17, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhp3t"]
+atlas = ExtResource("8_7ewk0")
+region = Rect2(1, 0, 61, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnsmo"]
+atlas = ExtResource("8_7ewk0")
+region = Rect2(62, 0, 61, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psl12"]
+atlas = ExtResource("8_7ewk0")
+region = Rect2(123, 0, 61, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ebs2"]
+atlas = ExtResource("8_7ewk0")
+region = Rect2(184, 0, 61, 207)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oyb3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhp3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnsmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psl12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ebs2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lhp3t"]
+a = Vector2(307, 164)
+b = Vector2(277, 110)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gnsmo"]
+a = Vector2(321, 240)
+b = Vector2(331, 284)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ebs2"]
+shader = ExtResource("12_psl12")
+shader_parameter/intensity = 1.35
 
 [node name="MainScene" type="Node2D"]
 
@@ -62,6 +118,7 @@ texture = ExtResource("2_jv6wh")
 offset = Vector2(0, -6.725)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Town" groups=["damage_zone"]]
+visible = false
 z_index = 1
 position = Vector2(11, 97)
 polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89, 105, 97, 89, 100, 76, 107, 40, 115, 14, 111, -10, 114)
@@ -69,6 +126,7 @@ polygon = PackedVector2Array(-9, -1, 58, 36, 125, 56, 143, 64, 144, 80, 118, 89,
 [node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
 position = Vector2(155, 195)
+rotation = 1.27596
 script = ExtResource("4_huasi")
 metadata/_edit_group_ = true
 
@@ -86,7 +144,7 @@ zoom = Vector2(1.665, 1.665)
 limit_left = 0
 limit_top = 0
 limit_right = 426
-limit_bottom = 240
+limit_bottom = 285
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -110,20 +168,23 @@ shape = SubResource("SegmentShape2D_huasi")
 [node name="DownBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(2, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/DownBorder"]
-shape = SubResource("SegmentShape2D_m1efj")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PlayZone/Limits/DownBorder"]
+position = Vector2(-2, 286)
+shape = SubResource("SegmentShape2D_76v2p")
 
 [node name="LeftBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(430, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/LeftBorder"]
-shape = SubResource("SegmentShape2D_mai8y")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PlayZone/Limits/LeftBorder"]
+position = Vector2(-428, 0)
+shape = SubResource("SegmentShape2D_m1efj")
 
 [node name="RightBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]
 position = Vector2(0, 240)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/RightBorder"]
-shape = SubResource("SegmentShape2D_76v2p")
+position = Vector2(430, -240)
+shape = SubResource("SegmentShape2D_mai8y")
 
 [node name="FishSpawnerL1" type="Area2D" parent="World/PlayZone"]
 script = ExtResource("5_76v2p")
@@ -131,25 +192,52 @@ fishing_zone_scene = ExtResource("6_drdnd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL1"]
 position = Vector2(192, 53)
-polygon = PackedVector2Array(64, 59, -134, 60, -28, 99, -30, 129, -125, 168, -175, 162, -186, 168, -184, 183, 126, 177)
+polygon = PackedVector2Array(79, 61, -134, 61, -28, 99, -30, 129, -125, 168, -175, 162, -186, 168, -186, 228, 136, 227, 110, 111)
+
+[node name="YellowBuoy" type="StaticBody2D" parent="World/PlayZone"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/YellowBuoy"]
+position = Vector2(304, 215)
+shape = SubResource("SegmentShape2D_7ewk0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/PlayZone/YellowBuoy"]
+position = Vector2(305, 215)
+sprite_frames = SubResource("SpriteFrames_oyb3p")
+autoplay = "default"
+frame_progress = 0.98996
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PlayZone/YellowBuoy"]
+shape = SubResource("SegmentShape2D_lhp3t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/PlayZone/YellowBuoy"]
+shape = SubResource("SegmentShape2D_gnsmo")
 
 [node name="DarkLayer" type="CanvasLayer" parent="."]
 
 [node name="Darkener" type="ColorRect" parent="DarkLayer"]
 material = ExtResource("2_6l7je")
 offset_right = 413.0
-offset_bottom = 104.0
+offset_bottom = 124.0
 scale = Vector2(1.04, 2.32)
 
 [node name="LightLayer" type="CanvasLayer" parent="."]
 layer = 2
 follow_viewport_enabled = true
 
+[node name="LightHouseLight" type="Sprite2D" parent="LightLayer"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_2ebs2")
+position = Vector2(141, 147)
+texture = ExtResource("12_gnsmo")
+offset = Vector2(0, -6.725)
+script = ExtResource("12_2ebs2")
+
 [node name="TownLights" type="Sprite2D" parent="LightLayer"]
 y_sort_enabled = true
 material = ExtResource("4_iacmt")
-position = Vector2(82, 158)
-texture = ExtResource("4_x6ack")
+position = Vector2(76, 150)
+texture = ExtResource("12_lhp3t")
+centered = false
 offset = Vector2(0, -6.725)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
