@@ -7,17 +7,26 @@ class_name FishSpawner
 
 func _ready() -> void:
 	GameManager.spawn_zones[level] = self
-	call_deferred("spawn_fish")
+	if level == GameManager.zone_level: call_deferred("spawn_fish")
 
 func spawn_fish():
 	var zone: FishingZone = fishing_zone_scene.instantiate()
-	get_parent().add_child(zone)
+	add_child(zone)
 	zone.global_position = _get_valid_spawn_point()
+	
+func destroy_fishes() -> bool:
+	for child in get_children():
+		if child is FishingZone:
+			child.queue_free()
+			return true
+	return false
+
 	
 func connect_zone_signal(zone: FishingZone):
 	zone.zone_exiting.connect(_on_zone_exiting)
 	
 func _on_zone_exiting() -> void:
+	if level != GameManager.zone_level: return
 	var wait_time := randf_range(1,3)
 	await get_tree().create_timer(wait_time).timeout
 	spawn_fish()

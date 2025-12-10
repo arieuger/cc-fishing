@@ -7,7 +7,16 @@ extends Node
 var zone_level := 0
 var player_life := 4
 var spawn_zones: Dictionary[int, FishSpawner] = {}
+var buoys: Dictionary[int, Node2D] = {}
 var boat: Boat
+var has_bottle := false
+
+func _process(delta: float) -> void:
+	if has_bottle and Input.is_action_just_pressed("drink"):
+		buoys[zone_level].queue_free()
+		zone_level += 1
+		if not spawn_zones[zone_level - 1].destroy_fishes():
+			spawn_zones[zone_level].spawn_fish()
 
 func get_random_for_level() -> FishData:
 	var candidates: Array[FishData] = []
