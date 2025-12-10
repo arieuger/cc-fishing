@@ -30,14 +30,18 @@ const FISH_JUMP_CHANCE: float = 0.6
 const FISH_JUMP_STRENGTH: float = 1.5
 const FISH_MAX_SPEED: float = 1.5
 
+var fishingSoundEvent: FmodEvent = null
+
 func _ready() -> void:
 	_catch_progress = catch_bar.value / 100
 	difficulty = randf_range(fish_data.min_difficulty, fish_data.max_difficulty)
+	_init_sound()
 	
 func _process(delta: float) -> void:
 	_update_cursor(delta, difficulty)
 	_update_fish(delta, difficulty)
 	_update_visuals()
+	_update_sound(true)
 	
 	if _catch_start_delay > 0.0:
 		_catch_start_delay -= delta
@@ -110,7 +114,17 @@ func _detect_overlapping(delta: float):
 			if GameManager.can_receive_bottle() and randf() < 0.7:
 				GameManager.receive_bottle()
 			
+		_update_sound(false)
 		GameManager.boat.fishing = false
 		fishing_zone.queue_free()
 		queue_free()
+
+# SOUND
 	
+func _init_sound() -> void:
+	fishingSoundEvent = FmodServer.create_event_instance("event:/Fishing")
+	fishingSoundEvent.paused = true
+	fishingSoundEvent.start()
+	
+func _update_sound(start: bool) -> void:
+	fishingSoundEvent.paused = !start

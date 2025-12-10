@@ -13,7 +13,7 @@ var fishing := false
 var showing_ui := false
 var knockback_time := 0.0
 
-var movingBoatEvent: FmodEvent = null
+var movingBoatSoundEvent: FmodEvent = null
 var isPlayingSound := false
 
 func _ready() -> void:
@@ -67,19 +67,20 @@ func _check_collisions() -> void:
 			
 			GameManager.update_life()
 			
+# SOUND
 
 func _init_boat_movement_sound() -> void:
-	movingBoatEvent = FmodServer.create_event_instance("event:/BoatMovement")
-	movingBoatEvent.paused = true
-	movingBoatEvent.start()
+	movingBoatSoundEvent = FmodServer.create_event_instance("event:/BoatMovement")
+	movingBoatSoundEvent.paused = true
+	movingBoatSoundEvent.start()
 	
 func _update_boat_movement_sound(velocity: Vector2) -> void:
 	if velocity.length() > 0.0 && !isPlayingSound:
 		isPlayingSound = true
-		movingBoatEvent.set_parameter_by_name('BoatMovement', 0)
-		movingBoatEvent.start()
-		movingBoatEvent.paused = false
+		movingBoatSoundEvent.set_parameter_by_name('BoatMovement', 0)
+		movingBoatSoundEvent.start()
+		movingBoatSoundEvent.paused = false
 		
 	if velocity.length() == 0.0 && isPlayingSound:
-		movingBoatEvent.set_parameter_by_name('BoatMovement', 1)
+		movingBoatSoundEvent.set_parameter_by_name('BoatMovement', 1)
 		isPlayingSound = false
