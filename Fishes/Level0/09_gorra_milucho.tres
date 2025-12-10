@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://kmdsqbmy80ad"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_gu6kp"]
+
+[resource]
+script = ExtResource("1_gu6kp")
+id = "gorra_milucho"
+display_name = "Vaia picada!"
+description = "Esta gorra é a do Milucho,  o que foi patrón do Azor, que levaba ao continente á mestra de Canexol "
+level = 0
+max_difficulty = 1.0

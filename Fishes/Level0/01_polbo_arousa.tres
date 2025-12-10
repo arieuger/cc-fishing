@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_nsw65")
 id = "polbo_arousa"
-display_name = "Polbo de Arousa"
+display_name = "Vaia picada!"
 description = "Quedou na nasa un polbo que viña de Arousa: traía os grelos prendidos nunha pata"
 level = 0
-min_difficulty = 0.5
 max_difficulty = 1.0

@@ -124,6 +124,7 @@ shape = SubResource("CircleShape2D_mai8y")
 
 [node name="Exclamation" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 2
 position = Vector2(0, -18.6667)
 sprite_frames = SubResource("SpriteFrames_8edxt")
 autoplay = "default"

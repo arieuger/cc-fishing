@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://cjh0unrk6apmd"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_2ma57"]
+
+[resource]
+script = ExtResource("1_2ma57")
+display_name = "Menudo peixe subiu!"
+description = "Un peixe inexistente. Quíxome discutir se era posible que o capturase, dada a súa natureza. "
+min_difficulty = 1.0
+max_difficulty = 1.5

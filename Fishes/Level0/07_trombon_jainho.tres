@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://dlyjfkxjprql6"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_ug03a"]
+
+[resource]
+script = ExtResource("1_ug03a")
+id = "trombon_jainho"
+display_name = "Vaia picada!"
+description = "O trombón do tío Jaíño! Caéralle ao fondo na noite do San Martiño"
+level = 0
+max_difficulty = 1.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://b83xugly0txpy"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_m8h8v"]
+
+[resource]
+script = ExtResource("1_m8h8v")
+display_name = "Menudo peixe subiu!"
+description = "Este peixe voador planeaba ao meu redor, buscando onde facer o niño"
+min_difficulty = 1.0
+max_difficulty = 1.5

@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_mkcgh")
 id = "robaliza_despistada"
-display_name = "Robaliza de Cortegada"
+display_name = "Menudo peixe subiu!"
 description = "Unha robaliza que chegou despistada desde Cortegada"
 level = 0
-min_difficulty = 0.5
 max_difficulty = 1.0

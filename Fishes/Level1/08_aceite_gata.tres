@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://cw6aqvupaubto"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_8ts7j"]
+
+[resource]
+script = ExtResource("1_8ts7j")
+display_name = "Vaia picada!"
+description = "Un frasco de Aceite de Gata, para curar as feridas que dan máis lata"
+min_difficulty = 1.0
+max_difficulty = 1.5

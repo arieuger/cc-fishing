@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://cjpadfykh160j"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_bd8te"]
+
+[resource]
+script = ExtResource("1_bd8te")
+id = "rapante"
+display_name = "Vaia picada!"
+description = "Un rapante que perdeu o avión a Barselona"
+level = 0
+max_difficulty = 1.0

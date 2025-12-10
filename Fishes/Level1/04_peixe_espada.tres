@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://dgiwxao3vkg15"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_edfqr"]
+
+[resource]
+script = ExtResource("1_edfqr")
+display_name = "Menudo peixe subiu!"
+description = "Un peixe espada, que me retou a duelo. Perdeu"
+min_difficulty = 1.0
+max_difficulty = 1.5

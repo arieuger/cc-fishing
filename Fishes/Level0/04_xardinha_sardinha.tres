@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_x5ox6")
 id = "xardinha"
-display_name = "Xardiña ou sardiña"
+display_name = "Menudo peixe subiu!"
 description = "Unha xardiña, heina preparar ao espeto como se fose sardiña"
 level = 0
-min_difficulty = 0.5
 max_difficulty = 1.0

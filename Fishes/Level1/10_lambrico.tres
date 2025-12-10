@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://w4rxf54vrk7j"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_g00xf"]
+
+[resource]
+script = ExtResource("1_g00xf")
+display_name = "Vaia picada!"
+description = "Un lambrico. Apareceuse coa derradeira badalada da igrexa da vila que hai baixo da auga. Cando o collín, tocaban a morto"
+min_difficulty = 1.0
+max_difficulty = 1.5

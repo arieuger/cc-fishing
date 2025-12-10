@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_lkqh8")
 id = "sargo_maragota"
-display_name = "Sargo ou maragota"
+display_name = "Menudo peixe subiu!"
 description = "Sexa sargo ou maragota, vai para a pota"
 level = 0
-min_difficulty = 0.5
 max_difficulty = 1.0

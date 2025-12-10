@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://canig25vgi0se"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_gflxa"]
+
+[resource]
+script = ExtResource("1_gflxa")
+id = "cangrexo_badexo"
+display_name = "Vaia picada!"
+description = "Ía nadando cara atrás. Non sabía se era badexo ou caranguexo"
+level = 0
+max_difficulty = 1.0

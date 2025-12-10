@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwqq5q7kodk40"
-path="res://.godot/imported/fmod_icon.svg-cca7eb13231881fafaea0d598d407ea3.ctex"
+uid="uid://fhfdw0ettj6"
+path="res://.godot/imported/nubes-bck.png-42d74a02d74ae56c46e2f19b3b8c0ce5.ctex"
 metadata={
-"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/fmod/icons/fmod_icon.svg"
-dest_files=["res://.godot/imported/fmod_icon.svg-cca7eb13231881fafaea0d598d407ea3.ctex"]
+source_file="res://Assets/nubes-bck.png"
+dest_files=["res://.godot/imported/nubes-bck.png-42d74a02d74ae56c46e2f19b3b8c0ce5.ctex"]
 
 [params]
 
@@ -39,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

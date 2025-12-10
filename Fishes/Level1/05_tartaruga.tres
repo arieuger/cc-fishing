@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://clopu0nc81drj"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_3gg17"]
+
+[resource]
+script = ExtResource("1_3gg17")
+display_name = "Vaia picada!"
+description = "Unha tartaruga! Ten talmente a forma da nosa illa."
+min_difficulty = 1.0
+max_difficulty = 1.5

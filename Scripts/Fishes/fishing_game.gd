@@ -111,7 +111,7 @@ func _detect_overlapping(delta: float):
 			(fish_ui_panel.find_child("FishTitle") as RichTextLabel).text = fish_data.display_name
 			(fish_ui_panel.find_child("FishDescription") as RichTextLabel).text = fish_data.description
 			fish_data.used = true
-			if GameManager.can_receive_bottle() and randf() < 0.7:
+			if GameManager.can_receive_bottle() and (randf() < 0.7 or GameManager.fishes_catched_by_level == 10):
 				GameManager.receive_bottle()
 			
 		_update_sound(false)

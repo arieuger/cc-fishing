@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7tcn3ffiran"]
+
+[ext_resource type="Texture2D" uid="uid://fda3wxxbai1i" path="res://Assets/rock3-top.png" id="1_46qiv"]
+[ext_resource type="Texture2D" uid="uid://nm8j70h88wrv" path="res://Assets/rock3-base.png" id="2_832ty"]
+
+[node name="Rock3" type="StaticBody2D" groups=["damage_zone"]]
+y_sort_enabled = true
+
+[node name="RockTop" type="Sprite2D" parent="."]
+texture = ExtResource("1_46qiv")
+
+[node name="RockBase" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("2_832ty")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, -1, -16, 3, 1, 10, 9, 4, 5, -2, -5, -6)

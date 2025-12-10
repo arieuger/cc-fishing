@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://ckchkrcgttik4"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_86du0"]
+
+[resource]
+script = ExtResource("1_86du0")
+id = "pateiro"
+display_name = "Vaia picada!"
+description = "O vento mareiro trouxo este pateiro"
+level = 0
+max_difficulty = 1.0

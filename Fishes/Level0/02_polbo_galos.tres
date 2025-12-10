@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_qyj12")
 id = "polbo_ghalos"
-display_name = "Polbo que fuxe"
+display_name = "Vaia picada!"
 description = "Outro polbo que caeu. Viña escapando dos ghalos"
 level = 0
-min_difficulty = 0.5
 max_difficulty = 1.0
