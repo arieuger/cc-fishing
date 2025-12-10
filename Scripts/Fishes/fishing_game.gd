@@ -35,7 +35,7 @@ var fishingSoundEvent: FmodEvent = null
 func _ready() -> void:
 	_catch_progress = catch_bar.value / 100
 	difficulty = randf_range(fish_data.min_difficulty, fish_data.max_difficulty)
-	_init_sound()
+	_init_sounds()
 	
 func _process(delta: float) -> void:
 	_update_cursor(delta, difficulty)
@@ -121,7 +121,7 @@ func _detect_overlapping(delta: float):
 
 # SOUND
 	
-func _init_sound() -> void:
+func _init_sounds() -> void:
 	fishingSoundEvent = FmodServer.create_event_instance("event:/Fishing")
 	fishingSoundEvent.paused = true
 	fishingSoundEvent.start()

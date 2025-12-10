@@ -14,9 +14,16 @@ var has_bottle := false
 var received_bottle_in_level := false
 var fishes_catched_by_level := 0
 
+var newBottleSoundEvent: FmodEvent = null
+var emptyBottleSoundEvent: FmodEvent = null
+
+func _ready() -> void:
+	_init_sounds()
+
 func _process(delta: float) -> void:
 	if has_bottle and Input.is_action_just_pressed("drink"):
 		bottle_ui.visible = false
+		_update_bottle_sound(false)
 		buoys[zone_level].queue_free()
 		zone_level += 1
 		received_bottle_in_level = false
@@ -31,6 +38,7 @@ func receive_bottle() -> void:
 	has_bottle = true
 	received_bottle_in_level = true
 	bottle_ui.visible = true
+	_update_bottle_sound(true)
 
 func get_random_for_level() -> FishData:
 	var candidates: Array[FishData] = []
@@ -52,3 +60,14 @@ func update_life(damage := true) -> void:
 		
 	# TODO: Condicón de morte, gañar vida
 		
+# SOUND
+	
+func _init_sounds() -> void:
+	newBottleSoundEvent = FmodServer.create_event_instance("event:/Bottle")
+	emptyBottleSoundEvent = FmodServer.create_event_instance("event:/EmptyBottle")
+	
+func _update_bottle_sound(start: bool) -> void:
+	if (start) :
+		newBottleSoundEvent.start()
+	else:
+		emptyBottleSoundEvent.start()

@@ -18,7 +18,7 @@ var isPlayingSound := false
 
 func _ready() -> void:
 	GameManager.boat = self
-	_init_boat_movement_sound()
+	_init_sounds()
 
 func _physics_process(delta: float) -> void:
 	if fishing or showing_ui: return
@@ -69,7 +69,7 @@ func _check_collisions() -> void:
 			
 # SOUND
 
-func _init_boat_movement_sound() -> void:
+func _init_sounds() -> void:
 	movingBoatSoundEvent = FmodServer.create_event_instance("event:/BoatMovement")
 	movingBoatSoundEvent.paused = true
 	movingBoatSoundEvent.start()
