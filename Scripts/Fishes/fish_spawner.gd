@@ -12,7 +12,7 @@ func _ready() -> void:
 func spawn_fish():
 	var zone: FishingZone = fishing_zone_scene.instantiate()
 	get_parent().add_child(zone)
-	zone.global_position = _get_random_point()
+	zone.global_position = _get_valid_spawn_point()
 	
 func connect_zone_signal(zone: FishingZone):
 	zone.zone_exiting.connect(_on_zone_exiting)
@@ -21,6 +21,14 @@ func _on_zone_exiting() -> void:
 	var wait_time := randf_range(1,3)
 	await get_tree().create_timer(wait_time).timeout
 	spawn_fish()
+	
+func _get_valid_spawn_point() -> Vector2:
+	const MAX_ATTEMPTS := 16
+	for i in MAX_ATTEMPTS:
+		var p := _get_random_point() 
+		if not _point_hits_rock(p):
+			return p
+	return _get_random_point()
 	
 func _get_random_point() -> Vector2:
 	var poly: PackedVector2Array = _col_shape.polygon
@@ -54,9 +62,25 @@ func _random_point_in_polygon(poly: PackedVector2Array) -> Vector2:
 			tri = tri_list[i]
 			break
 			
-	return random_point_in_triangle(tri[0], tri[1], tri[2])
+	return _random_point_in_triangle(tri[0], tri[1], tri[2])
 	
-func random_point_in_triangle(a: Vector2, b: Vector2, c: Vector2) -> Vector2:
+func _random_point_in_triangle(a: Vector2, b: Vector2, c: Vector2) -> Vector2:
 	var r1 := sqrt(randf())
 	var r2 := randf()
 	return (1.0 - r1) * a + r1 * (1.0 - r2) * b + r1 * r2 * c
+	
+func _point_hits_rock(world_point: Vector2) -> bool:
+	var space_state := get_world_2d().direct_space_state
+
+	var params := PhysicsPointQueryParameters2D.new()
+	params.position = world_point
+	params.collide_with_bodies = true
+	params.collide_with_areas = true 
+	var results := space_state.intersect_point(params, 8)
+
+	for r in results:
+		var collider = r["collider"]
+		if collider is Node and (collider as Node).is_in_group("damage_zone"):
+			return true
+
+	return false

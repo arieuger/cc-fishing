@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=34 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cb68nuqbp6wjo" path="res://Assets/poboreflexo.png" id="5_m1efj"]
 [ext_resource type="PackedScene" uid="uid://cuucqvhtfgtal" path="res://Scenes/fishing_zone.tscn" id="6_drdnd"]
 [ext_resource type="Texture2D" uid="uid://dadbcj6ba68f8" path="res://Assets/yellow_buoy.png" id="8_7ewk0"]
+[ext_resource type="Texture2D" uid="uid://0ayj2bwmroau" path="res://Assets/rock1.png" id="9_2ebs2"]
 [ext_resource type="Script" uid="uid://dsfbhghvfdy5a" path="res://Scripts/fish_panel.gd" id="11_76v2p"]
 [ext_resource type="Script" uid="uid://vssyogqu4s4c" path="res://Scripts/light_house_light.gd" id="12_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://dbv1vai85rbjx" path="res://Assets/empty_heart.png" id="12_drdnd"]
@@ -192,9 +193,10 @@ fishing_zone_scene = ExtResource("6_drdnd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL1"]
 position = Vector2(192, 53)
-polygon = PackedVector2Array(79, 61, -134, 61, -28, 99, -30, 129, -125, 168, -175, 162, -186, 168, -186, 228, 136, 227, 110, 111)
+polygon = PackedVector2Array(54, 62, -134, 61, -28, 99, -30, 129, -125, 168, -175, 162, -186, 168, -186, 228, 106, 231, 83, 113)
 
 [node name="YellowBuoy" type="StaticBody2D" parent="World/PlayZone"]
+position = Vector2(-31, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/YellowBuoy"]
 position = Vector2(304, 215)
@@ -211,6 +213,18 @@ shape = SubResource("SegmentShape2D_lhp3t")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World/PlayZone/YellowBuoy"]
 shape = SubResource("SegmentShape2D_gnsmo")
+
+[node name="Rocks" type="Node2D" parent="World/PlayZone"]
+position = Vector2(188, 242)
+
+[node name="Rock1" type="StaticBody2D" parent="World/PlayZone/Rocks" groups=["damage_zone"]]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World/PlayZone/Rocks/Rock1"]
+texture = ExtResource("9_2ebs2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Rocks/Rock1"]
+polygon = PackedVector2Array(-17, -7, -20, 0, -23, 6, -13, 9, 4, 9, 11, 2, 7, -6, -4, -10)
 
 [node name="DarkLayer" type="CanvasLayer" parent="."]
 
