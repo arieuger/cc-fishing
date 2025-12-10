@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f81455fb-f600-43f5-87da-1781a013f1c3}">
+		<property name="assetPath">
+			<value>Costa.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>296</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e39f4598-7d44-4485-a787-2b433c275d5f}</destination>
+		</relationship>
+	</object>
+</objects>
