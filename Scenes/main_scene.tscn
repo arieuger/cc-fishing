@@ -385,6 +385,7 @@ texture = ExtResource("19_jvnna")
 stretch_mode = 4
 
 [node name="FullBottle" type="TextureRect" parent="UILayer"]
+visible = false
 offset_left = 350.0
 offset_top = 7.0
 offset_right = 361.0

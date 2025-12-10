@@ -102,10 +102,13 @@ func _detect_overlapping(delta: float):
 	if fishing_zone != null and (_catch_progress == 1.0 or _catch_progress == 0.0):
 		if _catch_progress == 1.0:
 			GameManager.boat.showing_ui = true
+			GameManager.fishes_catched_by_level += 1
 			fish_ui_panel.visible = true
 			(fish_ui_panel.find_child("FishTitle") as RichTextLabel).text = fish_data.display_name
 			(fish_ui_panel.find_child("FishDescription") as RichTextLabel).text = fish_data.description
 			fish_data.used = true
+			if GameManager.can_receive_bottle() and randf() < 0.7:
+				GameManager.receive_bottle()
 			
 		GameManager.boat.fishing = false
 		fishing_zone.queue_free()
