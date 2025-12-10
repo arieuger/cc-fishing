@@ -182,14 +182,6 @@ event_name = "event:/BoatEngine"
 event_guid = "{4447e502-e6c2-41c9-9e61-179409d03560}"
 autoplay = true
 
-[node name="MovingBoatSound" type="FmodEventEmitter2D" parent="World/PlayZone/Boat"]
-event_name = "event:/BoatMovement"
-event_guid = "{8aec510e-024b-4ba2-ab7e-037ae8c50375}"
-fmod_parameters/BoatMovement/id = -8499031822375117277
-fmod_parameters/BoatMovement = "Moving"
-fmod_parameters/BoatMovement/labels = PackedStringArray("Moving", "Stopping")
-fmod_parameters/BoatMovement/variant_type = 4
-
 [node name="Limits" type="Node2D" parent="World/PlayZone"]
 
 [node name="UpBorder" type="StaticBody2D" parent="World/PlayZone/Limits"]

@@ -13,8 +13,12 @@ var fishing := false
 var showing_ui := false
 var knockback_time := 0.0
 
+var movingBoatEvent: FmodEvent = null
+var isPlayingSound := false
+
 func _ready() -> void:
 	GameManager.boat = self
+	_init_boat_movement_sound()
 
 func _physics_process(delta: float) -> void:
 	if fishing or showing_ui: return
@@ -39,11 +43,13 @@ func _physics_process(delta: float) -> void:
 		
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
+		
+		_update_boat_movement_sound(velocity)
 	
 	else: knockback_time -= delta
 
 	move_and_slide()
-	_check_collisions()
+	_check_collisions()	
 	
 func _check_collisions() -> void:
 	for i in get_slide_collision_count():
@@ -62,4 +68,18 @@ func _check_collisions() -> void:
 			GameManager.update_life()
 			
 
+func _init_boat_movement_sound() -> void:
+	movingBoatEvent = FmodServer.create_event_instance("event:/BoatMovement")
+	movingBoatEvent.paused = true
+	movingBoatEvent.start()
 	
+func _update_boat_movement_sound(velocity: Vector2) -> void:
+	if velocity.length() > 0.0 && !isPlayingSound:
+		isPlayingSound = true
+		movingBoatEvent.set_parameter_by_name('BoatMovement', 0)
+		movingBoatEvent.start()
+		movingBoatEvent.paused = false
+		
+	if velocity.length() == 0.0 && isPlayingSound:
+		movingBoatEvent.set_parameter_by_name('BoatMovement', 1)
+		isPlayingSound = false
