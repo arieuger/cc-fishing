@@ -16,6 +16,7 @@ var fishes_catched_by_level := 0
 
 var newBottleSoundEvent: FmodEvent = null
 var emptyBottleSoundEvent: FmodEvent = null
+var boatCrashSoundEvent: FmodEvent = null
 
 func _ready() -> void:
 	_init_sounds()
@@ -57,6 +58,7 @@ func update_life(damage := true) -> void:
 	if player_life > 0:
 		player_life -= 1
 		hearts_panel.get_children()[player_life - 1].visible = false 
+		_update_boat_crash_sound(true)
 		
 	# TODO: Condicón de morte, gañar vida
 		
@@ -65,9 +67,14 @@ func update_life(damage := true) -> void:
 func _init_sounds() -> void:
 	newBottleSoundEvent = FmodServer.create_event_instance("event:/Bottle")
 	emptyBottleSoundEvent = FmodServer.create_event_instance("event:/EmptyBottle")
+	boatCrashSoundEvent = FmodServer.create_event_instance("event:/BoatCrash")
 	
 func _update_bottle_sound(start: bool) -> void:
 	if (start) :
 		newBottleSoundEvent.start()
 	else:
 		emptyBottleSoundEvent.start()
+		
+func _update_boat_crash_sound(start: bool) -> void:
+	if (start):
+		boatCrashSoundEvent.start()

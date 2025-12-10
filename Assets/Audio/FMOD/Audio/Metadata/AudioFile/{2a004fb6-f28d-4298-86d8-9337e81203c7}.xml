@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{2a004fb6-f28d-4298-86d8-9337e81203c7}">
+		<property name="assetPath">
+			<value>Barco Chocando_04.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.9657596371882087</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e39f4598-7d44-4485-a787-2b433c275d5f}</destination>
+		</relationship>
+	</object>
+</objects>
