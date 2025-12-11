@@ -18,6 +18,7 @@ var fishes_catched_by_level := 0
 var trails: Array[SeaTrailFollow] = []
 var trail_particles: SeaTrailParticles
 
+var musicEvent: FmodEvent = null
 var newBottleSoundEvent: FmodEvent = null
 var emptyBottleSoundEvent: FmodEvent = null
 var boatCrashSoundEvent: FmodEvent = null
@@ -37,6 +38,7 @@ func _process(delta: float) -> void:
 		boat.drunk_amount = drunk_amount_by_level[zone_level]
 		# if not spawn_zones[zone_level - 1].destroy_fishes():
 		# 	spawn_zones[zone_level].spawn_fish()
+		_update_music(zone_level)
 		
 func catch_fish(fish_data: FishData):
 	boat.showing_ui = true
@@ -104,6 +106,12 @@ func _init_sounds() -> void:
 	boatCrashSoundEvent = FmodServer.create_event_instance("event:/BoatCrash")
 	boatRepairedSoundEvent = FmodServer.create_event_instance("event:/BoatRepaired")
 	
+	musicEvent = FmodServer.create_event_instance("event:/Music")
+	musicEvent.start()
+	
+func _update_music(level: float) -> void:
+	musicEvent.set_parameter_by_name('Level', level)
+
 func _update_bottle_sound(start: bool) -> void:
 	if (start) :
 		newBottleSoundEvent.start()

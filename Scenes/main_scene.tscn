@@ -152,11 +152,6 @@ bank_paths = ["res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.strings.bank",
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Music" type="FmodEventEmitter2D" parent="World"]
-event_name = "event:/Music"
-event_guid = "{eab27bb6-2162-450b-872e-8f133184efbb}"
-autoplay = true
-
 [node name="Background" type="Node2D" parent="World"]
 
 [node name="TownSea" type="Sprite2D" parent="World/Background"]
