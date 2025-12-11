@@ -15,6 +15,8 @@ var boat: Boat
 var has_bottle := false
 var received_bottle_in_level := false
 var fishes_catched_by_level := 0
+var trails: Array[SeaTrailFollow] = []
+var trail_particles: SeaTrailParticles
 
 var newBottleSoundEvent: FmodEvent = null
 var emptyBottleSoundEvent: FmodEvent = null
@@ -84,6 +86,13 @@ func _find_first_visible_heart(visible := true) -> Node:
 	for h in hearts_panel.get_children():
 		if h.visible == visible: return h
 	return null
+
+func _on_trail_timer_timeout() -> void:
+	var path := trails[randi() % trails.size()]
+	trail_particles.attach_to_pathfollow(path)
+	path.play()
+	trail_particles.attach_to_pathfollow(path)
+	
 		
 # SOUND
 	

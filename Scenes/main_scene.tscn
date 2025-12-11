@@ -1,8 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=52 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
 [ext_resource type="Texture2D" uid="uid://c4cal3fad0sd8" path="res://Assets/pobo.png" id="2_jv6wh"]
+[ext_resource type="Script" uid="uid://bovfi76h2caml" path="res://Scripts/sea_trail_follow.gd" id="3_5bov3"]
+[ext_resource type="Script" uid="uid://daopylomlb5yl" path="res://Scripts/sea_trail_particles.gd" id="3_xle81"]
 [ext_resource type="Script" uid="uid://bcobfpde7uoba" path="res://Scripts/boat.gd" id="4_huasi"]
 [ext_resource type="Material" uid="uid://comsnh3ahrisy" path="res://Shaders/light_shader_res.tres" id="4_iacmt"]
 [ext_resource type="Texture2D" uid="uid://wj1kjc43iw4e" path="res://icon.svg" id="4_maf8m"]
@@ -25,6 +27,49 @@
 [ext_resource type="Texture2D" uid="uid://djtasn8bw3nxu" path="res://Assets/bottle-empty.png" id="19_jvnna"]
 [ext_resource type="Texture2D" uid="uid://dm0fa0u7p03u4" path="res://Assets/bottle.png" id="19_oyb3p"]
 [ext_resource type="Script" uid="uid://c4la1gkjjr4xp" path="res://Scripts/drunk_rect.gd" id="20_5bov3"]
+
+[sub_resource type="Curve" id="Curve_5bov3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xle81"]
+curve = SubResource("Curve_5bov3")
+
+[sub_resource type="Curve" id="Curve_5cm5d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.988417, 0.7853554), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5bov3"]
+curve = SubResource("Curve_5cm5d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xle81"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 24.85
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_5bov3")
+color = Color(0.2315211, 0.7021729, 0.84140176, 1)
+alpha_curve = SubResource("CurveTexture_xle81")
+
+[sub_resource type="Curve2D" id="Curve2D_5cm5d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, 77, 0, 0, 0, 0, 62, 49, 0, 0, 0, 0, 52, 32, 0, 0, 0, 0, 33, 19, 0, 0, 0, 0, -2, 9)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_5bov3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 144, 77, 0, 0, 0, 0, 100, 66, 0, 0, 0, 0, 52, 49, 0, 0, 0, 0, 16, 20, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_xle81"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 74, 112, 0, 0, 0, 0, 86, 90, 0, 0, 0, 0, 97, 63, 0, 0, 0, 0, 80, 38, 0, 0, 0, 0, 40, 15, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_huasi"]
 
@@ -123,6 +168,45 @@ texture = ExtResource("5_m1efj")
 position = Vector2(0, 4)
 texture = ExtResource("1_52fb6")
 centered = false
+
+[node name="SeaTrails" type="Node2D" parent="World/Background"]
+
+[node name="SeaTrailParticles" type="GPUParticles2D" parent="World/Background/SeaTrails"]
+z_index = -2
+position = Vector2(228, 213)
+rotation = -1.6421038
+emitting = false
+amount = 50
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_xle81")
+script = ExtResource("3_xle81")
+
+[node name="SeaTrail" type="Path2D" parent="World/Background/SeaTrails"]
+position = Vector2(164, 136)
+curve = SubResource("Curve2D_5cm5d")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="World/Background/SeaTrails/SeaTrail"]
+position = Vector2(64, 77)
+rotation = -1.6421038
+script = ExtResource("3_5bov3")
+
+[node name="SeaTrail2" type="Path2D" parent="World/Background/SeaTrails"]
+position = Vector2(285, 136)
+curve = SubResource("Curve2D_5bov3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="World/Background/SeaTrails/SeaTrail2"]
+position = Vector2(144, 77)
+rotation = -2.896614
+script = ExtResource("3_5bov3")
+
+[node name="SeaTrail3" type="Path2D" parent="World/Background/SeaTrails"]
+position = Vector2(458, 122)
+curve = SubResource("Curve2D_xle81")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="World/Background/SeaTrails/SeaTrail3"]
+position = Vector2(74, 112)
+rotation = -1.0714496
+script = ExtResource("3_5bov3")
 
 [node name="PlayZone" type="Node2D" parent="World"]
 y_sort_enabled = true
@@ -238,6 +322,7 @@ level = 1
 fishing_zone_scene = ExtResource("6_drdnd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL2"]
+visible = false
 position = Vector2(192, 53)
 polygon = PackedVector2Array(92, 61, -213, 65, -174, 94, -169, 122, -235, 230, 113, 232, 112, 134)
 

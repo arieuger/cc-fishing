@@ -15,3 +15,9 @@ drunk_amount_by_level = Dictionary[int, float]({
 1: 0.75,
 2: 1.25
 })
+
+[node name="TrailTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
