@@ -572,4 +572,6 @@ offset_bottom = 25.0
 texture = ExtResource("19_oyb3p")
 stretch_mode = 4
 
+[connection signal="mouse_entered" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_mouse_entered"]
 [connection signal="pressed" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_close_btn_pressed"]
+[connection signal="ready" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_ready"]
