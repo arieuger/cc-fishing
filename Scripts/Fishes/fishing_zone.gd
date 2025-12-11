@@ -9,6 +9,11 @@ signal zone_exiting
 var _is_boat_inside := false
 var _is_fishing_game_running := false
 
+var alertSoundEvent: FmodEvent = null
+
+func _ready() -> void:
+	_init_sounds()
+
 func _process(_delta: float) -> void:
 	if !_is_boat_inside or _is_fishing_game_running: return
 	if Input.is_action_just_pressed("ui_accept"):
@@ -30,6 +35,7 @@ func _on_body_entered(body:Node2D) -> void:
 	if body.name == "Boat":
 		_is_boat_inside = true
 		_exclamation.visible = true
+		_update_sounds(true)
 
 func _on_body_exited(body:Node2D) -> void:
 	if body.name == "Boat":
@@ -39,3 +45,12 @@ func _on_body_exited(body:Node2D) -> void:
 func _on_tree_exiting() -> void:
 	GameManager.spawn_zones[GameManager.zone_level].connect_zone_signal(self)
 	zone_exiting.emit()
+
+# SOUND
+	
+func _init_sounds() -> void:
+	alertSoundEvent = FmodServer.create_event_instance("event:/Alert")
+	
+func _update_sounds(start: bool) -> void:
+	if (start):
+		alertSoundEvent.start()

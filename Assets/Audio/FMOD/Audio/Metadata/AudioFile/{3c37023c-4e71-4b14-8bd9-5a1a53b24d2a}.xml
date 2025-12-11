@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{3c37023c-4e71-4b14-8bd9-5a1a53b24d2a}">
+		<property name="assetPath">
+			<value>Atencion.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e39f4598-7d44-4485-a787-2b433c275d5f}</destination>
+		</relationship>
+	</object>
+</objects>
