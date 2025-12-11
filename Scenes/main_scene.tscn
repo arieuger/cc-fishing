@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=71 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bhcu4ls7gqawd" path="res://Assets/luzpobo-sen-faro.png" id="12_lhp3t"]
 [ext_resource type="Shader" uid="uid://c4fy4nhhr8gp0" path="res://Shaders/light_shader.gdshader" id="12_psl12"]
 [ext_resource type="Texture2D" uid="uid://c66tuvngxsad7" path="res://Assets/full_heart.png" id="13_ioaeq"]
+[ext_resource type="Texture2D" uid="uid://di2dulampggp4" path="res://Assets/red_buoy.png" id="13_yb0ja"]
 [ext_resource type="Shader" uid="uid://1o42ge1l5mlh" path="res://Shaders/drunk_shader.gdshader" id="19_5cm5d"]
 [ext_resource type="Texture2D" uid="uid://djtasn8bw3nxu" path="res://Assets/bottle-empty.png" id="19_jvnna"]
 [ext_resource type="Texture2D" uid="uid://dm0fa0u7p03u4" path="res://Assets/bottle.png" id="19_oyb3p"]
@@ -200,6 +201,78 @@ b = Vector2(277, 110)
 a = Vector2(321, 240)
 b = Vector2(331, 284)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yb0ja"]
+a = Vector2(-1, -67)
+b = Vector2(-34, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urcnp"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(1, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpyod"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(62, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mplvr"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(123, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vggli"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(184, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0xgx"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(1, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrumr"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(62, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbok"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(123, 0, 61, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0uwk"]
+atlas = ExtResource("13_yb0ja")
+region = Rect2(184, 0, 61, 209)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0xgx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urcnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpyod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mplvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vggli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0xgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0uwk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_15kh8"]
+a = Vector2(301, 110)
+b = Vector2(303, 149)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ebs2"]
 shader = ExtResource("12_psl12")
 shader_parameter/intensity = 1.35
@@ -370,7 +443,7 @@ shape = SubResource("SegmentShape2D_m1efj")
 position = Vector2(0, 240)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Limits/RightBorder"]
-position = Vector2(821, -240)
+position = Vector2(672, -240)
 shape = SubResource("SegmentShape2D_mai8y")
 
 [node name="FishSpawnerL1" type="Area2D" parent="World/PlayZone"]
@@ -389,9 +462,18 @@ level = 1
 fishing_zone_scene = ExtResource("6_drdnd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL2"]
-visible = false
 position = Vector2(192, 53)
-polygon = PackedVector2Array(92, 61, -213, 65, -174, 94, -169, 122, -235, 230, 113, 232, 112, 134)
+polygon = PackedVector2Array(122, 61, -213, 65, -174, 94, -169, 122, -197, 148, -293, 183, -266, 228, 93, 232, 112, 133, 124, 92)
+
+[node name="FishSpawnerL3" type="Area2D" parent="World/PlayZone"]
+position = Vector2(142, 0)
+script = ExtResource("5_76v2p")
+level = 2
+fishing_zone_scene = ExtResource("6_drdnd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL3"]
+position = Vector2(192, 53)
+polygon = PackedVector2Array(315, 60, -213, 65, -174, 94, -169, 122, -193, 152, -286, 187, -235, 230, 295, 235, 319, 182, 331, 129)
 
 [node name="YellowBuoy" type="StaticBody2D" parent="World/PlayZone"]
 position = Vector2(-31, 0)
@@ -412,6 +494,24 @@ shape = SubResource("SegmentShape2D_lhp3t")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World/PlayZone/YellowBuoy"]
 shape = SubResource("SegmentShape2D_gnsmo")
+
+[node name="RedBuoy" type="StaticBody2D" parent="World/PlayZone"]
+position = Vector2(162, 0)
+script = ExtResource("8_b48ew")
+level = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/RedBuoy"]
+position = Vector2(304, 215)
+shape = SubResource("SegmentShape2D_yb0ja")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/PlayZone/RedBuoy"]
+position = Vector2(274, 215)
+sprite_frames = SubResource("SpriteFrames_r0xgx")
+autoplay = "default"
+frame_progress = 0.96449363
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PlayZone/RedBuoy"]
+shape = SubResource("SegmentShape2D_15kh8")
 
 [node name="Rocks" type="Node2D" parent="World/PlayZone"]
 position = Vector2(188, 242)

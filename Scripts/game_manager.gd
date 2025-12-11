@@ -57,7 +57,8 @@ func catch_fish(fish_data: FishData):
 		_update_boat_health_sound(true)
 			
 func can_receive_bottle() -> bool:
-	return not received_bottle_in_level and fishes_catched_by_level >= minimum_fishes_to_bottle[zone_level]
+	return zone_level < 2 and not received_bottle_in_level \
+	and fishes_catched_by_level >= minimum_fishes_to_bottle[zone_level]
 	
 func receive_bottle() -> void:
 	has_bottle = true

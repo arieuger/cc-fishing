@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://dcjn6rit5sy8l"]
+
+[ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_yn3uh"]
+
+[resource]
+script = ExtResource("1_yn3uh")
+display_name = "Menudo peixe subiu!"
+description = "O Bocareu, compañeiro de mareas. Un bo peixe. Como lle daba á augardente"
+level = 2
+min_difficulty = 1.5

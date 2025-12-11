@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FishDatabase" load_steps=23 format=3 uid="uid://btmhiai383a68"]
+[gd_resource type="Resource" script_class="FishDatabase" load_steps=33 format=3 uid="uid://btmhiai383a68"]
 
 [ext_resource type="Script" uid="uid://b8dtf7774o24r" path="res://Scripts/Fishes/fish_data.gd" id="1_1asr5"]
 [ext_resource type="Resource" uid="uid://b83ojiooxmamj" path="res://Fishes/Level0/01_polbo_arousa.tres" id="2_dtctu"]
@@ -22,7 +22,17 @@
 [ext_resource type="Resource" uid="uid://cw6aqvupaubto" path="res://Fishes/Level1/08_aceite_gata.tres" id="19_jc82e"]
 [ext_resource type="Resource" uid="uid://cjh0unrk6apmd" path="res://Fishes/Level1/09_peixe_inexistente.tres" id="20_b77yi"]
 [ext_resource type="Resource" uid="uid://w4rxf54vrk7j" path="res://Fishes/Level1/10_lambrico.tres" id="21_poljd"]
+[ext_resource type="Resource" uid="uid://ctyw01c41gip0" path="res://Fishes/Level2/01_polbo_vaca.tres" id="22_2xpge"]
+[ext_resource type="Resource" uid="uid://dgjducjt5qy2m" path="res://Fishes/Level2/02_peixe_trompeta.tres" id="23_tsu3e"]
+[ext_resource type="Resource" uid="uid://deiokq3sxiwao" path="res://Fishes/Level2/03_peixe_porco.tres" id="24_5dkf6"]
+[ext_resource type="Resource" uid="uid://bpfg1e2t0jbmf" path="res://Fishes/Level2/04_barbada.tres" id="25_p2vu8"]
+[ext_resource type="Resource" uid="uid://cmvjbk1fkhqov" path="res://Fishes/Level2/05_peixe_crawl.tres" id="26_h5j5u"]
+[ext_resource type="Resource" uid="uid://cm0wb6auxnv3i" path="res://Fishes/Level2/06_peixe_demo.tres" id="27_p0qsk"]
+[ext_resource type="Resource" uid="uid://c6gsytnj8y3ga" path="res://Fishes/Level2/07_caracol.tres" id="28_35hms"]
+[ext_resource type="Resource" uid="uid://dq4gq04cq2xak" path="res://Fishes/Level2/08_anima.tres" id="29_lnahi"]
+[ext_resource type="Resource" uid="uid://dcjn6rit5sy8l" path="res://Fishes/Level2/09_bocareu.tres" id="30_v7cfk"]
+[ext_resource type="Resource" uid="uid://lp8xeohud6ok" path="res://Fishes/Level2/10_choco.tres" id="31_82g8u"]
 
 [resource]
 script = ExtResource("2_mweep")
-fishes = Array[ExtResource("1_1asr5")]([ExtResource("2_dtctu"), ExtResource("3_d8b73"), ExtResource("4_m5260"), ExtResource("5_k4bh6"), ExtResource("6_xamqu"), ExtResource("8_ehlnb"), ExtResource("8_xamqu"), ExtResource("9_ehlnb"), ExtResource("10_gvpya"), ExtResource("11_0222f"), ExtResource("12_84tad"), ExtResource("13_eqk04"), ExtResource("14_oq68k"), ExtResource("15_taaim"), ExtResource("16_4t653"), ExtResource("17_xlp5g"), ExtResource("18_d1l8o"), ExtResource("19_jc82e"), ExtResource("20_b77yi"), ExtResource("21_poljd")])
+fishes = Array[ExtResource("1_1asr5")]([ExtResource("2_dtctu"), ExtResource("3_d8b73"), ExtResource("4_m5260"), ExtResource("5_k4bh6"), ExtResource("6_xamqu"), ExtResource("8_ehlnb"), ExtResource("8_xamqu"), ExtResource("9_ehlnb"), ExtResource("10_gvpya"), ExtResource("11_0222f"), ExtResource("12_84tad"), ExtResource("13_eqk04"), ExtResource("14_oq68k"), ExtResource("15_taaim"), ExtResource("16_4t653"), ExtResource("17_xlp5g"), ExtResource("18_d1l8o"), ExtResource("19_jc82e"), ExtResource("20_b77yi"), ExtResource("21_poljd"), ExtResource("22_2xpge"), ExtResource("23_tsu3e"), ExtResource("24_5dkf6"), ExtResource("25_p2vu8"), ExtResource("26_h5j5u"), ExtResource("27_p0qsk"), ExtResource("28_35hms"), ExtResource("29_lnahi"), ExtResource("30_v7cfk"), ExtResource("31_82g8u")])
