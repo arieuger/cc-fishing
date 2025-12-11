@@ -2,6 +2,7 @@ extends Node
 
 @onready var hearts_panel: BoxContainer = $/root/MainScene/UILayer/FullHearts
 @onready var bottle_ui: TextureRect = $/root/MainScene/UILayer/FullBottle
+@onready var fish_ui_panel: Panel = $/root/MainScene/UILayer/FishPanel
 @export var fish_database: FishDatabase
 @export var minimum_fishes_to_bottle: Dictionary[int, int]
 @export var drunk_amount_by_level: Dictionary[int, float] = {}
@@ -33,6 +34,21 @@ func _process(delta: float) -> void:
 		boat.drunk_amount = drunk_amount_by_level[zone_level]
 		# if not spawn_zones[zone_level - 1].destroy_fishes():
 		# 	spawn_zones[zone_level].spawn_fish()
+		
+func catch_fish(fish_data: FishData):
+	boat.showing_ui = true
+	fishes_catched_by_level += 1
+	fish_ui_panel.visible = true
+	(fish_ui_panel.find_child("FishTitle") as RichTextLabel).text = fish_data.display_name
+	(fish_ui_panel.find_child("FishDescription") as RichTextLabel).text = fish_data.description
+	fish_data.used = true
+	if can_receive_bottle() and (randf() < 0.7 or fishes_catched_by_level == 10):
+		receive_bottle()
+	if player_life < 4 and randf() <= 0.5:
+		player_life += 1
+		var heart := _find_first_visible_heart(false)
+		if heart != null: heart.visible = true
+		(fish_ui_panel.find_child("HeartFound")).visible = true
 			
 func can_receive_bottle() -> bool:
 	return not received_bottle_in_level and fishes_catched_by_level >= minimum_fishes_to_bottle[zone_level]
@@ -41,6 +57,7 @@ func receive_bottle() -> void:
 	has_bottle = true
 	received_bottle_in_level = true
 	bottle_ui.visible = true
+	(fish_ui_panel.find_child("BottleFound")).visible = true
 	_update_bottle_sound(true)
 
 func get_random_for_level() -> FishData:
@@ -59,10 +76,14 @@ func get_random_for_level() -> FishData:
 func update_life(damage := true) -> void:
 	if player_life > 0:
 		player_life -= 1
-		hearts_panel.get_children()[player_life - 1].visible = false 
+		var heart := _find_first_visible_heart()
+		if heart != null: heart.visible = false 
 		_update_boat_crash_sound(true)
-		
-	# TODO: Condicón de morte, gañar vida
+	
+func _find_first_visible_heart(visible := true) -> Node:
+	for h in hearts_panel.get_children():
+		if h.visible == visible: return h
+	return null
 		
 # SOUND
 	

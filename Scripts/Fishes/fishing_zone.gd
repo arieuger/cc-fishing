@@ -21,10 +21,9 @@ func _process(_delta: float) -> void:
 		fish_game.fish_data = selected_fish
 		fish_game.fishing_zone = self
 		var ui_layer := get_node("/root/MainScene/UILayer")
-		ui_layer.add_child(fish_game)
 		var screen_pos: Vector2 = _exclamation.get_global_transform_with_canvas().origin
 		fish_game.position = screen_pos
-		add_child(fish_game)
+		ui_layer.add_child(fish_game)
 	
 
 func _on_body_entered(body:Node2D) -> void:

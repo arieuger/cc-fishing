@@ -281,13 +281,16 @@ position = Vector2(201, -62)
 position = Vector2(166, -98)
 
 [node name="Rock6" parent="World/PlayZone/Rocks" instance=ExtResource("10_5oxhp")]
-position = Vector2(136, -29)
+position = Vector2(206, -10)
 
 [node name="Rock7" parent="World/PlayZone/Rocks" instance=ExtResource("11_nt2eh")]
 position = Vector2(243, -109)
 
 [node name="Rock8" parent="World/PlayZone/Rocks" instance=ExtResource("12_5cm5d")]
-position = Vector2(228, -5)
+position = Vector2(146, -36)
+
+[node name="Rock9" parent="World/PlayZone/Rocks" instance=ExtResource("11_nt2eh")]
+position = Vector2(92, -23)
 
 [node name="DarkLayer" type="CanvasLayer" parent="."]
 
@@ -297,6 +300,7 @@ offset_left = -1.0
 offset_right = 787.46155
 offset_bottom = 124.0
 scale = Vector2(1.04, 2.32)
+metadata/_edit_lock_ = true
 
 [node name="LightLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -326,6 +330,7 @@ material = SubResource("ShaderMaterial_xle81")
 offset_right = 446.0
 offset_bottom = 263.0
 script = ExtResource("20_5bov3")
+metadata/_edit_lock_ = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -364,10 +369,40 @@ anchor_right = 1.0
 offset_left = 5.0
 offset_top = 21.0
 offset_right = -5.0
-offset_bottom = 74.0
+offset_bottom = 59.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 6
 text = "afasdafa"
+horizontal_alignment = 1
+
+[node name="HeartFound" type="RichTextLabel" parent="UILayer/FishPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 65.0
+offset_right = -121.0
+offset_bottom = 79.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.29000002, 0.29000002, 1)
+theme_override_font_sizes/normal_font_size = 5
+text = "Conseguiches unha vida!"
+horizontal_alignment = 1
+
+[node name="BottleFound" type="RichTextLabel" parent="UILayer/FishPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 121.0
+offset_top = 65.0
+offset_right = -5.0
+offset_bottom = 79.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.30799997, 0.77, 0.31569996, 1)
+theme_override_font_sizes/normal_font_size = 5
+text = "Atopaches augardente!"
 horizontal_alignment = 1
 
 [node name="CloseBtn" type="Button" parent="UILayer/FishPanel"]
