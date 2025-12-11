@@ -21,6 +21,7 @@ var trail_particles: SeaTrailParticles
 var newBottleSoundEvent: FmodEvent = null
 var emptyBottleSoundEvent: FmodEvent = null
 var boatCrashSoundEvent: FmodEvent = null
+var boatRepairedSoundEvent: FmodEvent = null
 
 func _ready() -> void:
 	_init_sounds()
@@ -51,6 +52,7 @@ func catch_fish(fish_data: FishData):
 		var heart := _find_first_visible_heart(false)
 		if heart != null: heart.visible = true
 		(fish_ui_panel.find_child("HeartFound")).visible = true
+		_update_boat_health_sound(true)
 			
 func can_receive_bottle() -> bool:
 	return not received_bottle_in_level and fishes_catched_by_level >= minimum_fishes_to_bottle[zone_level]
@@ -80,7 +82,7 @@ func update_life(damage := true) -> void:
 		player_life -= 1
 		var heart := _find_first_visible_heart()
 		if heart != null: heart.visible = false 
-		_update_boat_crash_sound(true)
+		_update_boat_health_sound(false)
 	
 func _find_first_visible_heart(visible := true) -> Node:
 	for h in hearts_panel.get_children():
@@ -100,6 +102,7 @@ func _init_sounds() -> void:
 	newBottleSoundEvent = FmodServer.create_event_instance("event:/Bottle")
 	emptyBottleSoundEvent = FmodServer.create_event_instance("event:/EmptyBottle")
 	boatCrashSoundEvent = FmodServer.create_event_instance("event:/BoatCrash")
+	boatRepairedSoundEvent = FmodServer.create_event_instance("event:/BoatRepaired")
 	
 func _update_bottle_sound(start: bool) -> void:
 	if (start) :
@@ -107,6 +110,8 @@ func _update_bottle_sound(start: bool) -> void:
 	else:
 		emptyBottleSoundEvent.start()
 		
-func _update_boat_crash_sound(start: bool) -> void:
-	if (start):
+func _update_boat_health_sound(up: bool) -> void:
+	if (up):
+		boatRepairedSoundEvent.start()
+	else:
 		boatCrashSoundEvent.start()
