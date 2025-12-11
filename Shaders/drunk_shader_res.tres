@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bfky572hn6phv"]
+
+[ext_resource type="Shader" uid="uid://1o42ge1l5mlh" path="res://Shaders/drunk_shader.gdshader" id="1_qqlss"]
+
+[resource]
+shader = ExtResource("1_qqlss")
+shader_parameter/strength = 0.0
+shader_parameter/time = 0.0

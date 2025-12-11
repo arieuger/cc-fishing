@@ -12,5 +12,6 @@ minimum_fishes_to_bottle = Dictionary[int, int]({
 })
 drunk_amount_by_level = Dictionary[int, float]({
 0: 0.0,
-1: 1.0
+1: 0.75,
+2: 1.25
 })

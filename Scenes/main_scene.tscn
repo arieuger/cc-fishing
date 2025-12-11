@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=42 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -21,8 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://bhcu4ls7gqawd" path="res://Assets/luzpobo-sen-faro.png" id="12_lhp3t"]
 [ext_resource type="Shader" uid="uid://c4fy4nhhr8gp0" path="res://Shaders/light_shader.gdshader" id="12_psl12"]
 [ext_resource type="Texture2D" uid="uid://c66tuvngxsad7" path="res://Assets/full_heart.png" id="13_ioaeq"]
+[ext_resource type="Shader" uid="uid://1o42ge1l5mlh" path="res://Shaders/drunk_shader.gdshader" id="19_5cm5d"]
 [ext_resource type="Texture2D" uid="uid://djtasn8bw3nxu" path="res://Assets/bottle-empty.png" id="19_jvnna"]
 [ext_resource type="Texture2D" uid="uid://dm0fa0u7p03u4" path="res://Assets/bottle.png" id="19_oyb3p"]
+[ext_resource type="Script" uid="uid://c4la1gkjjr4xp" path="res://Scripts/drunk_rect.gd" id="20_5bov3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_huasi"]
 
@@ -93,6 +95,11 @@ b = Vector2(331, 284)
 shader = ExtResource("12_psl12")
 shader_parameter/intensity = 1.35
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xle81"]
+shader = ExtResource("19_5cm5d")
+shader_parameter/strength = 0.0
+shader_parameter/time = 0.0
+
 [node name="MainScene" type="Node2D"]
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
@@ -149,7 +156,6 @@ y_sort_enabled = true
 position = Vector2(155, 195)
 rotation = 1.27596
 script = ExtResource("4_huasi")
-drunk_lateral_strength = 100.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="World/PlayZone/Boat"]
@@ -312,8 +318,17 @@ texture = ExtResource("12_lhp3t")
 centered = false
 offset = Vector2(0, -6.725)
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="DrunkLayer" type="CanvasLayer" parent="."]
 layer = 3
+
+[node name="DrunkRect" type="ColorRect" parent="DrunkLayer"]
+material = SubResource("ShaderMaterial_xle81")
+offset_right = 446.0
+offset_bottom = 263.0
+script = ExtResource("20_5bov3")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 4
 
 [node name="FishPanel" type="Panel" parent="UILayer"]
 visible = false
