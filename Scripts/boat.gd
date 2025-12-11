@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Boat
 
+@onready var visual: Node2D = $Visual
+@onready var anim: AnimatedSprite2D = $Visual/AnimatedSprite2D
+
 @export var acceleration: float = 100.0
 @export var max_speed: float = 80.0
 @export var friction: float = 250.0
@@ -21,6 +24,8 @@ var drunk_amount: float = 0
 var movingBoatSoundEvent: FmodEvent = null
 var isPlayingSound := false
 
+var _last_dir := 0
+
 func _ready() -> void:
 	GameManager.boat = self
 	_init_sounds()
@@ -38,6 +43,8 @@ func _physics_process(delta: float) -> void:
 			var max_wobble_rad := deg_to_rad(drunk_turn_wobble_deg) * drunk_amount
 			var wobble := randf_range(-max_wobble_rad, max_wobble_rad)
 			rotation += wobble
+			
+		visual.rotation = -rotation
 		
 		var forward := Vector2.UP.rotated(rotation)
 		
@@ -58,12 +65,58 @@ func _physics_process(delta: float) -> void:
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
 		
+		_update_sprite_direction()
 		_update_boat_movement_sound(velocity)
 	
 	else: knockback_time -= delta
 
 	move_and_slide()
 	_check_collisions()	
+	
+func _update_sprite_direction() -> void:
+	
+	var facing := Vector2.UP.rotated(rotation)
+	var angle := facing.angle()          # 0 = derecha, PI/2 = abajo, -PI/2 = arriba, PI = izquierda
+
+	var step := PI / 4.0                 # 45º por sector
+	var dir := int(round(angle / step)) % 8
+	if dir < 0:
+		dir += 8
+	_last_dir = dir
+	
+	match dir:
+		0: # derecha
+			anim.flip_h = false
+			anim.play("right")
+	
+		1: # abajo-derecha
+			anim.flip_h = false
+			anim.play("down_right")
+	
+		2: # abajo
+			anim.flip_h = false
+			anim.play("down")
+	
+		3: # abajo-izquierda (espejo de abajo-dcha)
+			anim.flip_h = true
+			anim.play("down_right")
+	
+		4: # izquierda (espejo de derecha)
+			anim.flip_h = true
+			anim.play("right")
+	
+		5: # arriba-izquierda (espejo de arriba-dcha)
+			anim.flip_h = true
+			anim.play("up_right")
+	
+		6: # arriba
+			anim.flip_h = false
+			anim.play("up")
+	
+		7: # arriba-derecha
+			anim.flip_h = false
+			anim.play("up_right")
+	
 	
 func _check_collisions() -> void:
 	for i in get_slide_collision_count():

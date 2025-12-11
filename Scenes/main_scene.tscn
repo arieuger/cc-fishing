@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=59 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cuucqvhtfgtal" path="res://Scenes/fishing_zone.tscn" id="6_drdnd"]
 [ext_resource type="Texture2D" uid="uid://dadbcj6ba68f8" path="res://Assets/yellow_buoy.png" id="8_7ewk0"]
 [ext_resource type="Script" uid="uid://csy38mpyrhgai" path="res://Scripts/buoy.gd" id="8_b48ew"]
+[ext_resource type="Texture2D" uid="uid://cobke086gpupm" path="res://Assets/boat.png" id="8_s8qe6"]
 [ext_resource type="PackedScene" uid="uid://cl124solpk7ah" path="res://Scenes/rock_1.tscn" id="10_5oxhp"]
 [ext_resource type="Script" uid="uid://dsfbhghvfdy5a" path="res://Scripts/fish_panel.gd" id="11_76v2p"]
 [ext_resource type="PackedScene" uid="uid://defr2yj1yidl4" path="res://Scenes/rock_2.tscn" id="11_nt2eh"]
@@ -75,6 +76,69 @@ point_count = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_maf8m"]
 size = Vector2(6.322197, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8qe6"]
+atlas = ExtResource("8_s8qe6")
+region = Rect2(27, 1, 11, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15kh8"]
+atlas = ExtResource("8_s8qe6")
+region = Rect2(40, 1, 11, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb0ja"]
+atlas = ExtResource("8_s8qe6")
+region = Rect2(1, 1, 11, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viu5a"]
+atlas = ExtResource("8_s8qe6")
+region = Rect2(14, 1, 11, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b00ha"]
+atlas = ExtResource("8_s8qe6")
+region = Rect2(53, 1, 11, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xle81"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8qe6")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15kh8")
+}],
+"loop": true,
+"name": &"down_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb0ja")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viu5a")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b00ha")
+}],
+"loop": true,
+"name": &"up_right",
+"speed": 5.0
+}]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_huasi"]
 b = Vector2(820, 0)
@@ -238,13 +302,14 @@ script = ExtResource("4_huasi")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="World/PlayZone/Boat"]
+visible = false
 position = Vector2(-1, 0.0080719)
 scale = Vector2(0.046875, 0.078251)
 texture = ExtResource("4_maf8m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayZone/Boat"]
-position = Vector2(-0.95684814, 4.5776367e-05)
-scale = Vector2(1.0000002, 1.0000002)
+position = Vector2(0, 0.205)
+scale = Vector2(0.875, 0.945)
 shape = SubResource("RectangleShape2D_maf8m")
 
 [node name="Camera2D" type="Camera2D" parent="World/PlayZone/Boat"]
@@ -271,6 +336,13 @@ editor_draw_drag_margin = true
 event_name = "event:/BoatEngine"
 event_guid = "{4447e502-e6c2-41c9-9e61-179409d03560}"
 autoplay = true
+
+[node name="Visual" type="Node2D" parent="World/PlayZone/Boat"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/PlayZone/Boat/Visual"]
+scale = Vector2(1.0000001, 1.0000001)
+sprite_frames = SubResource("SpriteFrames_xle81")
+animation = &"up_right"
 
 [node name="Limits" type="Node2D" parent="World/PlayZone"]
 
