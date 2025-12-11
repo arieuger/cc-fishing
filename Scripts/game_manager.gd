@@ -4,6 +4,7 @@ extends Node
 @onready var bottle_ui: TextureRect = $/root/MainScene/UILayer/FullBottle
 @export var fish_database: FishDatabase
 @export var minimum_fishes_to_bottle: Dictionary[int, int]
+@export var drunk_amount_by_level: Dictionary[int, float] = {}
 
 var zone_level := 0
 var player_life := 4
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 		zone_level += 1
 		received_bottle_in_level = false
 		fishes_catched_by_level = 0
+		boat.drunk_amount = drunk_amount_by_level[zone_level]
 		# if not spawn_zones[zone_level - 1].destroy_fishes():
 		# 	spawn_zones[zone_level].spawn_fish()
 			

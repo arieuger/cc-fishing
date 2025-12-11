@@ -9,9 +9,14 @@ class_name Boat
 @export var collision_pushback: float = 7.5
 @export var collision_nudge: float = 2.0  
 
+@export var drunk_turn_wobble_deg: float = 8.0
+@export var drunk_lateral_strength: float = 100.0
+@export var drunk_friction_factor: float = 0.6
+
 var fishing := false
 var showing_ui := false
 var knockback_time := 0.0
+var drunk_amount: float = 0
 
 var movingBoatSoundEvent: FmodEvent = null
 var isPlayingSound := false
@@ -29,16 +34,25 @@ func _physics_process(delta: float) -> void:
 		var thrust_input := Input.get_axis("ui_down", "ui_up")  
 		
 		rotation -= -turn_input * turn_speed * delta
+		if drunk_amount > 0.0 and thrust_input != 0.0:
+			var max_wobble_rad := deg_to_rad(drunk_turn_wobble_deg) * drunk_amount
+			var wobble := randf_range(-max_wobble_rad, max_wobble_rad)
+			rotation += wobble
 		
 		var forward := Vector2.UP.rotated(rotation)
 		
 		if thrust_input != 0.0:
 			velocity += forward * thrust_input * acceleration * delta
+			if drunk_amount > 0.0:
+				var right := forward.orthogonal()
+				var lateral_jitter := randf_range(-1.0, 1.0)
+				velocity += right * lateral_jitter * drunk_lateral_strength * drunk_amount * delta
 		else:
 			if velocity.length() > 0.0:
 				var v_dir := velocity.normalized()
 				var v_mag := velocity.length()
-				v_mag = max(v_mag - friction * delta, 0.0)
+				var current_friction: float = lerp(friction, friction * drunk_friction_factor, drunk_amount)
+				v_mag = max(v_mag - current_friction * delta, 0.0)
 				velocity = v_dir * v_mag
 		
 		if velocity.length() > max_speed:

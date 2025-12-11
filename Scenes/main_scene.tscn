@@ -149,6 +149,7 @@ y_sort_enabled = true
 position = Vector2(155, 195)
 rotation = 1.27596
 script = ExtResource("4_huasi")
+drunk_lateral_strength = 100.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="World/PlayZone/Boat"]
