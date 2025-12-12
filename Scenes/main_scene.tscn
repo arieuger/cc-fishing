@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=74 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -29,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://djtasn8bw3nxu" path="res://Assets/bottle-empty.png" id="19_jvnna"]
 [ext_resource type="Texture2D" uid="uid://dm0fa0u7p03u4" path="res://Assets/bottle.png" id="19_oyb3p"]
 [ext_resource type="Script" uid="uid://c4la1gkjjr4xp" path="res://Scripts/drunk_rect.gd" id="20_5bov3"]
+[ext_resource type="Texture2D" uid="uid://ni07gl7des4v" path="res://Assets/circle.png" id="30_15kh8"]
+[ext_resource type="Texture2D" uid="uid://xf07nexgtnjo" path="res://Assets/arrow.png" id="31_viu5a"]
+[ext_resource type="Script" uid="uid://ctngsobhe8nl0" path="res://Scripts/rotation_arrow.gd" id="32_b00ha"]
 
 [sub_resource type="Curve" id="Curve_5bov3"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -508,7 +511,7 @@ shape = SubResource("SegmentShape2D_yb0ja")
 position = Vector2(274, 215)
 sprite_frames = SubResource("SpriteFrames_r0xgx")
 autoplay = "default"
-frame_progress = 0.96449363
+frame_progress = 0.43622327
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PlayZone/RedBuoy"]
 shape = SubResource("SegmentShape2D_15kh8")
@@ -738,6 +741,31 @@ offset_right = 361.0
 offset_bottom = 25.0
 texture = ExtResource("19_oyb3p")
 stretch_mode = 4
+
+[node name="RotationCircle" type="TextureRect" parent="UILayer"]
+offset_left = 7.0
+offset_top = 211.0
+offset_right = 29.0
+offset_bottom = 233.0
+texture = ExtResource("30_15kh8")
+stretch_mode = 2
+
+[node name="RotationArrow" type="TextureRect" parent="UILayer/RotationCircle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 4.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("31_viu5a")
+stretch_mode = 2
+script = ExtResource("32_b00ha")
 
 [connection signal="mouse_entered" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_mouse_entered"]
 [connection signal="pressed" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_close_btn_pressed"]

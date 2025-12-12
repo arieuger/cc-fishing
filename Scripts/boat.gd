@@ -76,44 +76,37 @@ func _physics_process(delta: float) -> void:
 func _update_sprite_direction() -> void:
 	
 	var facing := Vector2.UP.rotated(rotation)
-	var angle := facing.angle()          # 0 = derecha, PI/2 = abajo, -PI/2 = arriba, PI = izquierda
+	var angle := facing.angle()
 
-	var step := PI / 4.0                 # 45º por sector
+	var step := PI / 4.0
 	var dir := int(round(angle / step)) % 8
 	if dir < 0:
 		dir += 8
 	_last_dir = dir
 	
 	match dir:
-		0: # derecha
+		0: 
 			anim.flip_h = false
 			anim.play("right")
-	
-		1: # abajo-derecha
+		1:
 			anim.flip_h = false
 			anim.play("down_right")
-	
-		2: # abajo
+		2:
 			anim.flip_h = false
 			anim.play("down")
-	
-		3: # abajo-izquierda (espejo de abajo-dcha)
+		3:
 			anim.flip_h = true
 			anim.play("down_right")
-	
-		4: # izquierda (espejo de derecha)
+		4:
 			anim.flip_h = true
 			anim.play("right")
-	
-		5: # arriba-izquierda (espejo de arriba-dcha)
+		5:
 			anim.flip_h = true
 			anim.play("up_right")
-	
-		6: # arriba
+		6:
 			anim.flip_h = false
 			anim.play("up")
-	
-		7: # arriba-derecha
+		7:
 			anim.flip_h = false
 			anim.play("up_right")
 	
