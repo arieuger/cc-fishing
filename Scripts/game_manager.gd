@@ -151,7 +151,9 @@ func update_life() -> void:
 		_update_boat_health_sound(false)
 
 	if player_life == 0:
-		if is_instance_valid(boat): boat.is_dead = true
+		if is_instance_valid(boat): 
+			boat.is_dead = true
+			GameEnding.is_dead = true
 		get_tree().change_scene_to_file(game_scene_path)
 		
 func show_drink_advice():

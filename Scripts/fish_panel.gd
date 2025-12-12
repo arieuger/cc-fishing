@@ -15,6 +15,8 @@ func _on_close_btn_pressed() -> void:
 	if GameManager.fishes_catched_by_level == 10:
 		GameManager.show_drink_advice()
 	if GameManager.zone_level == 2 and GameManager.fishes_catched_by_level == 10:
+	#Para facilitar la comprobacion de fin:
+	#if GameManager.zone_level == 0 and GameManager.fishes_catched_by_level == 1:
 		if is_instance_valid(GameManager.boat): GameManager.boat.is_dead = true
 		get_tree().change_scene_to_file(game_scene_path)
 
