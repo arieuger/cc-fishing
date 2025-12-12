@@ -1,5 +1,6 @@
 extends Panel
 
+@export_file("*.tscn") var game_scene_path: String = "res://Scenes/end_game.tscn"
 var clickSoundEvent: FmodEvent = null
 
 func _on_ready() -> void:
@@ -11,6 +12,9 @@ func _on_close_btn_pressed() -> void:
 	_update_sounds(true)
 	visible = false
 	GameManager.boat.showing_ui = false
+	if GameManager.zone_level == 2 and GameManager.fishes_catched_by_level == 10:
+		if is_instance_valid(GameManager.boat): GameManager.boat.is_dead = true
+		get_tree().change_scene_to_file(game_scene_path)
 
 func _on_mouse_entered() -> void:
 	_update_sounds(true)

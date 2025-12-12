@@ -4,6 +4,8 @@ extends Node
 @export var minimum_fishes_to_bottle: Dictionary[int, int]
 @export var drunk_amount_by_level: Dictionary[int, float] = {}
 
+@export_file("*.tscn") var game_scene_path: String = "res://Scenes/end_game.tscn"
+
 var hearts_panel: BoxContainer
 var bottle_ui: TextureRect
 var fish_ui_panel: Panel
@@ -96,10 +98,8 @@ func catch_fish(fish_data: FishData):
 func lose_fish() -> void:
 	messages.visible = true
 	messages.text = "[color=#d65e5e]%s[/color]" % [_lose_fish_messages[randi() % _lose_fish_messages.size()]]
-	await get_tree().create_timer(4.0).timeout
-	messages.visible = false
-
-			
+	get_tree().create_timer(4.0).timeout.connect(func(): messages.visible = false)
+	
 func can_receive_bottle() -> bool:
 	return zone_level < 2 and not received_bottle_in_level \
 	and fishes_catched_by_level >= minimum_fishes_to_bottle[zone_level]
@@ -111,8 +111,7 @@ func receive_bottle() -> void:
 	(fish_ui_panel.find_child("BottleFound")).visible = true
 	messages.visible = true
 	messages.text = "[color=#43ba85]%s[/color]" % [_win_bottle_messages[randi() % _win_bottle_messages.size()]]
-	await get_tree().create_timer(4.0).timeout
-	messages.visible = false
+	get_tree().create_timer(4.0).timeout.connect(func(): messages.visible = false)
 	_update_bottle_sound(true)
 
 func get_random_for_level() -> FishData:
@@ -128,16 +127,24 @@ func get_random_for_level() -> FishData:
 	
 	else: return candidates[randi() % candidates.size()]
 	
-func update_life(damage := true) -> void:
+func update_life() -> void:
 	if player_life > 0:
 		player_life -= 1
 		var heart := _find_first_visible_heart()
 		if heart != null: heart.visible = false 
-		messages.visible = true
-		messages.text = "[color=#d65e5e]%s[/color]" % [_lose_life_messages[randi() % _lose_life_messages.size()]]
-		await get_tree().create_timer(4.0).timeout
-		messages.visible = false
+		if player_life > 1:
+			messages.visible = true
+			messages.text = "[color=#d65e5e]%s[/color]" % [_lose_life_messages[randi() % _lose_life_messages.size()]]
+			get_tree().create_timer(4.0).timeout.connect(func():
+				if is_instance_valid(messages):
+					messages.visible = false
+			)
+			
 		_update_boat_health_sound(false)
+
+	if player_life == 0:
+		if is_instance_valid(boat): boat.is_dead = true
+		get_tree().change_scene_to_file(game_scene_path)
 	
 func _find_first_visible_heart(visible := true) -> Node:
 	for h in hearts_panel.get_children():
@@ -145,7 +152,7 @@ func _find_first_visible_heart(visible := true) -> Node:
 	return null
 
 func _on_trail_timer_timeout() -> void:
-	if trails.is_empty(): return
+	if trails.is_empty() or not is_instance_valid(trail_particles): return
 	var path := trails[randi() % trails.size()]
 	trail_particles.attach_to_pathfollow(path)
 	path.play()

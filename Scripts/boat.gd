@@ -20,6 +20,7 @@ var fishing := false
 var showing_ui := false
 var knockback_time := 0.0
 var drunk_amount: float = 0
+var is_dead := false
 
 var movingBoatSoundEvent: FmodEvent = null
 var isPlayingSound := false
@@ -31,7 +32,7 @@ func _ready() -> void:
 	_init_sounds()
 
 func _physics_process(delta: float) -> void:
-	if fishing or showing_ui: return
+	if fishing or showing_ui or is_dead: return
 	
 	if knockback_time <= 0.0:
 		knockback_time = 0.0
@@ -74,6 +75,7 @@ func _physics_process(delta: float) -> void:
 	_check_collisions()	
 	
 func _update_sprite_direction() -> void:
+	if is_dead: return
 	
 	var facing := Vector2.UP.rotated(rotation)
 	var angle := facing.angle()
@@ -112,6 +114,7 @@ func _update_sprite_direction() -> void:
 	
 	
 func _check_collisions() -> void:
+	if is_dead: return
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()

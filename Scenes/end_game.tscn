@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx1igf0cp7xdt"]
+
+[ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_2it4q"]
+[ext_resource type="Script" uid="uid://bsm4o0iyiop3u" path="res://Scripts/end_game.gd" id="1_s1acs"]
+[ext_resource type="Texture2D" uid="uid://fhfdw0ettj6" path="res://Assets/nubes-bck.png" id="2_s1acs"]
+[ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="3_dsb1p"]
+[ext_resource type="Theme" uid="uid://b7fw18jc1ykgi" path="res://game_theme.tres" id="4_s7v5u"]
+
+[node name="EndGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s1acs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15294118, 0.22745098, 0.3764706, 1)
+
+[node name="Nubes" type="Sprite2D" parent="."]
+position = Vector2(17, 115.5)
+texture = ExtResource("1_2it4q")
+
+[node name="NubesBck" type="Sprite2D" parent="."]
+position = Vector2(215, 173.5)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_s1acs")
+
+[node name="DarkLayer" type="CanvasLayer" parent="."]
+
+[node name="Darkener" type="ColorRect" parent="DarkLayer"]
+material = ExtResource("3_dsb1p")
+offset_left = -1.0
+offset_right = 787.46155
+offset_bottom = 124.0
+scale = Vector2(1.04, 2.32)
+metadata/_edit_lock_ = true
+
+[node name="ForegroundLayer" type="CanvasLayer" parent="."]
+
+[node name="IntroLabel" type="RichTextLabel" parent="ForegroundLayer"]
+visible = false
+offset_left = 24.0
+offset_top = 81.0
+offset_right = 402.0
+offset_bottom = 200.0
+size_flags_vertical = 3
+theme = ExtResource("4_s7v5u")
+theme_override_colors/default_color = Color(1, 0.901, 0.45999998, 1)
+theme_override_font_sizes/normal_font_size = 8
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="RichTextLabel" parent="ForegroundLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 42.0
+offset_top = 216.0
+offset_right = 384.0
+offset_bottom = 228.0
+size_flags_vertical = 3
+theme = ExtResource("4_s7v5u")
+theme_override_colors/default_color = Color(0.51, 0.51, 0.51, 1)
+theme_override_font_sizes/normal_font_size = 7
+text = "[Presiona espazo para continuar...]"
+horizontal_alignment = 1

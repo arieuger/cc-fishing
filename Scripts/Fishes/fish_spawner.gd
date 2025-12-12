@@ -28,8 +28,7 @@ func connect_zone_signal(zone: FishingZone):
 func _on_zone_exiting() -> void:
 	if level != GameManager.zone_level: return
 	var wait_time := randf_range(1,3)
-	await get_tree().create_timer(wait_time).timeout
-	spawn_fish()
+	get_tree().create_timer(wait_time).timeout.connect(func(): spawn_fish())
 	
 func _get_valid_spawn_point() -> Vector2:
 	const MAX_ATTEMPTS := 16
