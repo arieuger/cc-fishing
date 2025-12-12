@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=78 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dm0fa0u7p03u4" path="res://Assets/bottle.png" id="19_oyb3p"]
 [ext_resource type="Script" uid="uid://c4la1gkjjr4xp" path="res://Scripts/drunk_rect.gd" id="20_5bov3"]
 [ext_resource type="Texture2D" uid="uid://dnd1otmv0f53m" path="res://Assets/luz-illa.png" id="24_rpyod"]
+[ext_resource type="Theme" uid="uid://b7fw18jc1ykgi" path="res://game_theme.tres" id="27_mplvr"]
 [ext_resource type="Texture2D" uid="uid://ni07gl7des4v" path="res://Assets/circle.png" id="30_15kh8"]
 [ext_resource type="Texture2D" uid="uid://xf07nexgtnjo" path="res://Assets/arrow.png" id="31_viu5a"]
 [ext_resource type="Script" uid="uid://ctngsobhe8nl0" path="res://Scripts/rotation_arrow.gd" id="32_b00ha"]
@@ -286,6 +287,10 @@ shader_parameter/intensity = 1.35
 shader = ExtResource("19_5cm5d")
 shader_parameter/strength = 0.0
 shader_parameter/time = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpyod"]
+bg_color = Color(0.120000005, 0.3906667, 0.4, 1)
+corner_detail = 1
 
 [node name="MainScene" type="Node2D"]
 
@@ -667,6 +672,8 @@ offset_right = -96.0
 offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("27_mplvr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_rpyod")
 script = ExtResource("11_76v2p")
 
 [node name="FishTitle" type="RichTextLabel" parent="UILayer/FishPanel"]
@@ -678,6 +685,7 @@ offset_top = 3.0
 offset_right = -3.0
 offset_bottom = 18.0
 grow_horizontal = 2
+theme = ExtResource("27_mplvr")
 theme_override_font_sizes/normal_font_size = 9
 text = "afasdafa"
 horizontal_alignment = 1
@@ -691,35 +699,33 @@ offset_top = 21.0
 offset_right = -5.0
 offset_bottom = 59.0
 grow_horizontal = 2
+theme = ExtResource("27_mplvr")
 theme_override_font_sizes/normal_font_size = 6
 text = "afasdafa"
 horizontal_alignment = 1
 
-[node name="HeartFound" type="RichTextLabel" parent="UILayer/FishPanel"]
-visible = false
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/FishPanel"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 65.0
-offset_right = -121.0
+offset_right = 228.0
 offset_bottom = 79.0
-grow_horizontal = 2
+
+[node name="HeartFound" type="RichTextLabel" parent="UILayer/FishPanel/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("27_mplvr")
 theme_override_colors/default_color = Color(1, 0.29000002, 0.29000002, 1)
 theme_override_font_sizes/normal_font_size = 5
 text = "Conseguiches unha vida!"
 horizontal_alignment = 1
 
-[node name="BottleFound" type="RichTextLabel" parent="UILayer/FishPanel"]
+[node name="BottleFound" type="RichTextLabel" parent="UILayer/FishPanel/HBoxContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 121.0
-offset_top = 65.0
-offset_right = -5.0
-offset_bottom = 79.0
-grow_horizontal = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("27_mplvr")
 theme_override_colors/default_color = Color(0.30799997, 0.77, 0.31569996, 1)
 theme_override_font_sizes/normal_font_size = 5
 text = "Atopaches augardente!"
@@ -731,6 +737,7 @@ offset_left = 94.0
 offset_top = 80.0
 offset_right = 140.0
 offset_bottom = 97.0
+theme = ExtResource("27_mplvr")
 theme_override_font_sizes/font_size = 6
 text = "Gardar peixe"
 
@@ -837,6 +844,7 @@ offset_left = 7.0
 offset_top = 7.0
 offset_right = 47.0
 offset_bottom = 47.0
+theme = ExtResource("27_mplvr")
 theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
 text = "0/10"
@@ -853,8 +861,10 @@ offset_top = -27.0
 offset_right = 180.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("27_mplvr")
 theme_override_font_sizes/normal_font_size = 7
 bbcode_enabled = true
+text = "afdasdfdsa asdf a"
 horizontal_alignment = 1
 vertical_alignment = 1
 
