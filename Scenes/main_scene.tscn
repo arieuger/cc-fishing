@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=76 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ce74ohedwixhs" path="res://Scripts/Fishes/fish_spawner.gd" id="5_76v2p"]
 [ext_resource type="Texture2D" uid="uid://cb68nuqbp6wjo" path="res://Assets/poboreflexo.png" id="5_m1efj"]
 [ext_resource type="PackedScene" uid="uid://cuucqvhtfgtal" path="res://Scenes/fishing_zone.tscn" id="6_drdnd"]
+[ext_resource type="Texture2D" uid="uid://0jlytrx1r5lf" path="res://Assets/illa.png" id="6_urcnp"]
 [ext_resource type="Texture2D" uid="uid://dadbcj6ba68f8" path="res://Assets/yellow_buoy.png" id="8_7ewk0"]
 [ext_resource type="Script" uid="uid://csy38mpyrhgai" path="res://Scripts/buoy.gd" id="8_b48ew"]
 [ext_resource type="Texture2D" uid="uid://cobke086gpupm" path="res://Assets/boat.png" id="8_s8qe6"]
@@ -29,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://djtasn8bw3nxu" path="res://Assets/bottle-empty.png" id="19_jvnna"]
 [ext_resource type="Texture2D" uid="uid://dm0fa0u7p03u4" path="res://Assets/bottle.png" id="19_oyb3p"]
 [ext_resource type="Script" uid="uid://c4la1gkjjr4xp" path="res://Scripts/drunk_rect.gd" id="20_5bov3"]
+[ext_resource type="Texture2D" uid="uid://dnd1otmv0f53m" path="res://Assets/luz-illa.png" id="24_rpyod"]
 [ext_resource type="Texture2D" uid="uid://ni07gl7des4v" path="res://Assets/circle.png" id="30_15kh8"]
 [ext_resource type="Texture2D" uid="uid://xf07nexgtnjo" path="res://Assets/arrow.png" id="31_viu5a"]
 [ext_resource type="Script" uid="uid://ctngsobhe8nl0" path="res://Scripts/rotation_arrow.gd" id="32_b00ha"]
@@ -370,6 +372,23 @@ event_guid = "{c05fd54b-c5fe-433b-92d6-b29cb06bc8b4}"
 autoplay = true
 position = Vector2(149, 174)
 
+[node name="Island" type="StaticBody2D" parent="World/PlayZone" groups=["damage_zone"]]
+y_sort_enabled = true
+position = Vector2(574, 222)
+physics_material_override = SubResource("PhysicsMaterial_huasi")
+metadata/_edit_group_ = true
+
+[node name="IslandSprite" type="Sprite2D" parent="World/PlayZone/Island"]
+position = Vector2(7.5, 6)
+texture = ExtResource("6_urcnp")
+offset = Vector2(0, -6.725)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/Island" groups=["damage_zone"]]
+visible = false
+z_index = 1
+position = Vector2(-12.5, -30)
+polygon = PackedVector2Array(2, 23, 18, 19, 40, 22, 52, 30, 52, 39, 44, 39, 40, 44, 17, 47, -13, 40, -13, 35, -8, 32)
+
 [node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
 position = Vector2(155, 195)
@@ -392,7 +411,7 @@ shape = SubResource("RectangleShape2D_maf8m")
 zoom = Vector2(1.665, 1.665)
 limit_left = 0
 limit_top = 0
-limit_right = 818
+limit_right = 670
 limit_bottom = 285
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -465,6 +484,7 @@ level = 1
 fishing_zone_scene = ExtResource("6_drdnd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL2"]
+visible = false
 position = Vector2(192, 53)
 polygon = PackedVector2Array(122, 61, -213, 65, -174, 94, -169, 122, -197, 148, -293, 183, -266, 228, 93, 232, 112, 133, 124, 92)
 
@@ -475,6 +495,7 @@ level = 2
 fishing_zone_scene = ExtResource("6_drdnd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/PlayZone/FishSpawnerL3"]
+visible = false
 position = Vector2(192, 53)
 polygon = PackedVector2Array(315, 60, -213, 65, -174, 94, -169, 122, -193, 152, -286, 187, -235, 230, 295, 235, 319, 182, 331, 129)
 
@@ -511,7 +532,7 @@ shape = SubResource("SegmentShape2D_yb0ja")
 position = Vector2(274, 215)
 sprite_frames = SubResource("SpriteFrames_r0xgx")
 autoplay = "default"
-frame_progress = 0.43622327
+frame_progress = 0.85362
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PlayZone/RedBuoy"]
 shape = SubResource("SegmentShape2D_15kh8")
@@ -547,6 +568,42 @@ position = Vector2(146, -36)
 [node name="Rock9" parent="World/PlayZone/Rocks" instance=ExtResource("11_nt2eh")]
 position = Vector2(92, -23)
 
+[node name="Rock10" parent="World/PlayZone/Rocks" instance=ExtResource("10_5oxhp")]
+position = Vector2(328, 14)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Rock11" parent="World/PlayZone/Rocks" instance=ExtResource("10_5oxhp")]
+position = Vector2(448, -101)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Rock12" parent="World/PlayZone/Rocks" instance=ExtResource("11_nt2eh")]
+position = Vector2(286, -35)
+scale = Vector2(-1, 1)
+
+[node name="Rock13" parent="World/PlayZone/Rocks" instance=ExtResource("11_nt2eh")]
+position = Vector2(358, -108)
+scale = Vector2(-1, 1)
+
+[node name="Rock14" parent="World/PlayZone/Rocks" instance=ExtResource("10_5oxhp")]
+position = Vector2(352, -97)
+rotation = -3.1415925
+scale = Vector2(1, -1)
+
+[node name="Rock15" parent="World/PlayZone/Rocks" instance=ExtResource("10_5oxhp")]
+position = Vector2(308, -24)
+
+[node name="Rock17" parent="World/PlayZone/Rocks" instance=ExtResource("12_5cm5d")]
+position = Vector2(434, 17)
+scale = Vector2(-1, 1)
+
+[node name="Rock16" parent="World/PlayZone/Rocks" instance=ExtResource("12_5cm5d")]
+position = Vector2(353, -55)
+
+[node name="Rock18" parent="World/PlayZone/Rocks" instance=ExtResource("11_nt2eh")]
+position = Vector2(428, -63)
+
 [node name="DarkLayer" type="CanvasLayer" parent="."]
 
 [node name="Darkener" type="ColorRect" parent="DarkLayer"]
@@ -574,6 +631,14 @@ y_sort_enabled = true
 material = ExtResource("4_iacmt")
 position = Vector2(76, 150)
 texture = ExtResource("12_lhp3t")
+centered = false
+offset = Vector2(0, -6.725)
+
+[node name="IslandLights" type="Sprite2D" parent="LightLayer"]
+y_sort_enabled = true
+material = ExtResource("4_iacmt")
+position = Vector2(566.515, 209)
+texture = ExtResource("24_rpyod")
 centered = false
 offset = Vector2(0, -6.725)
 

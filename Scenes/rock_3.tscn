@@ -14,4 +14,5 @@ z_index = -2
 texture = ExtResource("2_832ty")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-15, -1, -16, 3, 1, 10, 9, 4, 5, -2, -5, -6)

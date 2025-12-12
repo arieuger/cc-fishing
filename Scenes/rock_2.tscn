@@ -16,4 +16,5 @@ texture = ExtResource("2_e485u")
 offset = Vector2(0, 1.205)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-25, -6, -26, -2, -19, 10, -10, 14, 12, 5, 11, 1, -15, -10)
