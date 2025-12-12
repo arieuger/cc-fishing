@@ -23,7 +23,10 @@ var drunk_amount: float = 0
 var is_dead := false
 
 var movingBoatSoundEvent: FmodEvent = null
-var isPlayingSound := false
+const SOUND_PLAYING = "playing"
+const SOUND_STOPPED = "stopped"
+const SOUND_STOPPING = "stopping"
+var soundStatus := SOUND_STOPPED
 
 var _last_dir := 0
 
@@ -138,12 +141,19 @@ func _init_sounds() -> void:
 	movingBoatSoundEvent.start()
 	
 func _update_boat_movement_sound(velocity: Vector2) -> void:
-	if velocity.length() > 0.0 && !isPlayingSound:
-		isPlayingSound = true
+	if velocity.length() > 0.0 && soundStatus == SOUND_STOPPED:
+		soundStatus = SOUND_PLAYING
 		movingBoatSoundEvent.set_parameter_by_name('BoatMovement', 0)
 		movingBoatSoundEvent.start()
 		movingBoatSoundEvent.paused = false
 		
-	if velocity.length() == 0.0 && isPlayingSound:
+	if velocity.length() == 0.0 && soundStatus == SOUND_PLAYING:
+		soundStatus = SOUND_STOPPING
 		movingBoatSoundEvent.set_parameter_by_name('BoatMovement', 1)
-		isPlayingSound = false
+		_stop_sound()
+
+# Evitamos relanzar o son do barco antes de que remate o anterior para evitar
+# ruidos feos
+func _stop_sound() -> void:
+	await get_tree().create_timer(2).timeout
+	soundStatus = SOUND_STOPPED
