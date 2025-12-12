@@ -15,7 +15,7 @@ General/banks_path="res://Assets/Audio/FMOD/Audio/Build/Desktop"
 [application]
 
 config/name="XogoPesca"
-run/main_scene="uid://c1soqfi8e6x46"
+run/main_scene="uid://dgmuix4dd38qq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
