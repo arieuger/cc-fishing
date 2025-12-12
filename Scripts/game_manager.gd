@@ -1,13 +1,14 @@
 extends Node
 
-@onready var hearts_panel: BoxContainer = $/root/MainScene/UILayer/FullHearts
-@onready var bottle_ui: TextureRect = $/root/MainScene/UILayer/FullBottle
-@onready var fish_ui_panel: Panel = $/root/MainScene/UILayer/FishPanel
-@onready var fishes_catched_counter: RichTextLabel = $/root/MainScene/UILayer/FishesCounter
-@onready var messages: RichTextLabel = $/root/MainScene/UILayer/Messages
 @export var fish_database: FishDatabase
 @export var minimum_fishes_to_bottle: Dictionary[int, int]
 @export var drunk_amount_by_level: Dictionary[int, float] = {}
+
+var hearts_panel: BoxContainer
+var bottle_ui: TextureRect
+var fish_ui_panel: Panel
+var fishes_catched_counter: RichTextLabel
+var messages: RichTextLabel
 
 var zone_level := 0
 var player_life := 4
@@ -49,9 +50,17 @@ var emptyBottleSoundEvent: FmodEvent = null
 var boatCrashSoundEvent: FmodEvent = null
 var boatRepairedSoundEvent: FmodEvent = null
 
-func _ready() -> void:
+func bind_game_scene(main_scene: Node) -> void:
+	hearts_panel = main_scene.get_node("UILayer/FullHearts")
+	bottle_ui = main_scene.get_node("UILayer/FullBottle")
+	fish_ui_panel = main_scene.get_node("UILayer/FishPanel")
+	fishes_catched_counter = main_scene.get_node("UILayer/FishesCounter")
+	messages = main_scene.get_node("UILayer/Messages")
+	
+func start_game() -> void:
 	fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], 0]
 	_init_sounds()
+
 
 func _process(delta: float) -> void:
 	if has_bottle and Input.is_action_just_pressed("drink"):
@@ -136,6 +145,7 @@ func _find_first_visible_heart(visible := true) -> Node:
 	return null
 
 func _on_trail_timer_timeout() -> void:
+	if trails.is_empty(): return
 	var path := trails[randi() % trails.size()]
 	trail_particles.attach_to_pathfollow(path)
 	path.play()

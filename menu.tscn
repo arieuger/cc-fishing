@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgmuix4dd38qq"]
+
+[ext_resource type="Script" uid="uid://d3d7pir4mlhjt" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="Theme" uid="uid://b7fw18jc1ykgi" path="res://game_theme.tres" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="3_4hy44"]
+[ext_resource type="Texture2D" uid="uid://fhfdw0ettj6" path="res://Assets/nubes-bck.png" id="4_ytr4m"]
+[ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="5_ytr4m"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15294118, 0.22745098, 0.3764706, 1)
+
+[node name="Nubes" type="Sprite2D" parent="."]
+position = Vector2(17, 115.5)
+texture = ExtResource("3_4hy44")
+
+[node name="NubesBck" type="Sprite2D" parent="."]
+position = Vector2(215, 173.5)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_ytr4m")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 21.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme = ExtResource("2_ouk20")
+theme_override_font_sizes/normal_font_size = 27
+text = "AUGARDENTÍA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DarkLayer" type="CanvasLayer" parent="."]
+
+[node name="Darkener" type="ColorRect" parent="DarkLayer"]
+material = ExtResource("5_ytr4m")
+offset_left = -1.0
+offset_right = 787.46155
+offset_bottom = 124.0
+scale = Vector2(1.04, 2.32)
+metadata/_edit_lock_ = true
+
+[node name="ForegroundLayer" type="CanvasLayer" parent="."]
+
+[node name="StartBtn" type="Button" parent="ForegroundLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -9.0
+offset_right = 38.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ouk20")
+text = "Empezar"
+
+[node name="TutorialBtn" type="Button" parent="ForegroundLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 27.0
+offset_right = 38.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ouk20")
+text = "Titorial"
+
+[node name="IntroLabel" type="RichTextLabel" parent="ForegroundLayer"]
+visible = false
+offset_left = 24.0
+offset_top = 81.0
+offset_right = 402.0
+offset_bottom = 200.0
+size_flags_vertical = 3
+theme = ExtResource("2_ouk20")
+theme_override_colors/default_color = Color(1, 0.901, 0.45999998, 1)
+theme_override_font_sizes/normal_font_size = 8
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="RichTextLabel" parent="ForegroundLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 42.0
+offset_top = 216.0
+offset_right = 384.0
+offset_bottom = 228.0
+size_flags_vertical = 3
+theme = ExtResource("2_ouk20")
+theme_override_colors/default_color = Color(0.51, 0.51, 0.51, 1)
+theme_override_font_sizes/normal_font_size = 7
+text = "[Presiona espazo para continuar...]"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ForegroundLayer/StartBtn" to="." method="_on_start_btn_pressed"]

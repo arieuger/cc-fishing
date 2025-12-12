@@ -1,6 +1,7 @@
-[gd_scene load_steps=78 format=3 uid="uid://c1soqfi8e6x46"]
+[gd_scene load_steps=79 format=3 uid="uid://c1soqfi8e6x46"]
 
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="1_52fb6"]
+[ext_resource type="Script" uid="uid://dtaqn60um2ssj" path="res://Scenes/main_scene.gd" id="1_vggli"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="2_6l7je"]
 [ext_resource type="Texture2D" uid="uid://c4cal3fad0sd8" path="res://Assets/pobo.png" id="2_jv6wh"]
 [ext_resource type="Script" uid="uid://bovfi76h2caml" path="res://Scripts/sea_trail_follow.gd" id="3_5bov3"]
@@ -293,6 +294,7 @@ bg_color = Color(0.120000005, 0.3906667, 0.4, 1)
 corner_detail = 1
 
 [node name="MainScene" type="Node2D"]
+script = ExtResource("1_vggli")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.strings.bank", "res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.bank"]
