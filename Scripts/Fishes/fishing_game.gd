@@ -106,6 +106,7 @@ func _detect_overlapping(delta: float):
 	
 	if fishing_zone != null and (_catch_progress == 1.0 or _catch_progress == 0.0):
 		if _catch_progress == 1.0: GameManager.catch_fish(fish_data)
+		elif _catch_progress == 0.0: GameManager.lose_fish()
 		
 		_update_sounds(false, _catch_progress)
 		GameManager.boat.fishing = false

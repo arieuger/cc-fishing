@@ -4,6 +4,7 @@ extends Node
 @onready var bottle_ui: TextureRect = $/root/MainScene/UILayer/FullBottle
 @onready var fish_ui_panel: Panel = $/root/MainScene/UILayer/FishPanel
 @onready var fishes_catched_counter: RichTextLabel = $/root/MainScene/UILayer/FishesCounter
+@onready var messages: RichTextLabel = $/root/MainScene/UILayer/Messages
 @export var fish_database: FishDatabase
 @export var minimum_fishes_to_bottle: Dictionary[int, int]
 @export var drunk_amount_by_level: Dictionary[int, float] = {}
@@ -22,6 +23,10 @@ var _level_colors := [
 	"#43ba85",
 	"#c2b661",
 	"#d65e5e"
+]
+var _lose_fish_messages := [
+	"¡Mala mar te coma! Escapou",
+	"Xa se sabe: moito peixe rompe a rede"
 ]
 
 var musicEvent: FmodEvent = null
@@ -64,6 +69,13 @@ func catch_fish(fish_data: FishData):
 		if heart != null: heart.visible = true
 		(fish_ui_panel.find_child("HeartFound")).visible = true
 		_update_boat_health_sound(true)
+		
+func lose_fish() -> void:
+	messages.visible = true
+	messages.text = "[color=#d65e5e]%s[/color]" % [_lose_fish_messages[randi() % _lose_fish_messages.size()]]
+	await get_tree().create_timer(4.0).timeout
+	messages.visible = false
+
 			
 func can_receive_bottle() -> bool:
 	return zone_level < 2 and not received_bottle_in_level \
