@@ -12,6 +12,7 @@ var fish_ui_panel: Panel
 var fishes_catched_counter: RichTextLabel
 var messages: RichTextLabel
 var musicEmitter: FmodEventEmitter2D
+var drink_advice: RichTextLabel
 
 var zone_level := 0
 var player_life := 4
@@ -60,6 +61,7 @@ func bind_game_scene(main_scene: Node) -> void:
 	fishes_catched_counter = main_scene.get_node("UILayer/FishesCounter")
 	messages = main_scene.get_node("UILayer/Messages")
 	musicEmitter = main_scene.get_node("World/PlayZone/Island/Music")	
+	drink_advice = main_scene.get_node("UILayer/DrinkAdvice")
 	
 func start_game() -> void:
 	fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], 0]
@@ -77,6 +79,9 @@ func _process(delta: float) -> void:
 		fishes_catched_by_level = 0
 		boat.drunk_amount = drunk_amount_by_level[zone_level]
 		fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], fishes_catched_by_level]
+		if drink_advice.visible == true: 
+			drink_advice.visible = false
+			spawn_zones[zone_level].spawn_fish()
 		# if not spawn_zones[zone_level - 1].destroy_fishes():
 		# 	spawn_zones[zone_level].spawn_fish()
 		_update_music(zone_level)
@@ -148,6 +153,9 @@ func update_life() -> void:
 	if player_life == 0:
 		if is_instance_valid(boat): boat.is_dead = true
 		get_tree().change_scene_to_file(game_scene_path)
+		
+func show_drink_advice():
+	drink_advice.visible = true
 		
 func reset(full: bool = true) -> void:
 	zone_level = 0
