@@ -5,6 +5,7 @@ extends Control
 @onready var startBtn: Button = $ForegroundLayer/StartBtn
 @onready var tutorialBtn: Button = $ForegroundLayer/TutorialBtn
 @export_file("*.tscn") var game_scene_path: String = "res://Scenes/main_scene.tscn"
+var clickSoundEvent: FmodEvent = null
 var fade_time := 0.25
 
 var lines := [
@@ -22,6 +23,7 @@ var showing_intro := false;
 func _ready() -> void:
 	label.clear()
 	label.modulate.a = 0.0
+	_init_sounds()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not showing_intro or busy:
@@ -51,6 +53,7 @@ func _show_next_line() -> void:
 	busy = false
 
 func _on_start_btn_pressed() -> void:
+	_update_sounds(true)
 	info_label.visible = true
 	var t := create_tween()
 	t.set_parallel()
@@ -63,4 +66,14 @@ func _on_start_btn_pressed() -> void:
 	showing_intro = true
 	_show_next_line()
 	
+func _on_mouse_entered() -> void:
+	_update_sounds(true)
 	
+# SOUND
+
+func _init_sounds() -> void:
+	clickSoundEvent = FmodServer.create_event_instance("event:/Click")	
+	
+func _update_sounds(start: bool) -> void:
+	if start:
+		clickSoundEvent.start()
