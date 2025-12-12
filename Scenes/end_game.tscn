@@ -15,6 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s1acs")
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.strings.bank", "res://Assets/Audio/FMOD/Audio/Build/Desktop/Master.bank"]
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -69,3 +72,8 @@ theme_override_colors/default_color = Color(0.51, 0.51, 0.51, 1)
 theme_override_font_sizes/normal_font_size = 7
 text = "[Presiona espazo para continuar...]"
 horizontal_alignment = 1
+
+[node name="SirensSoundsEmitter" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Siren"
+event_guid = "{5cf61d52-88fe-470d-9066-76cb70f56e0a}"
+autoplay = true
