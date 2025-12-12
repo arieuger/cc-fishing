@@ -29,6 +29,20 @@ var _lose_fish_messages := [
 	"Xa se sabe: moito peixe rompe a rede"
 ]
 
+var _lose_life_messages := [
+	"Batín cun con. Maldición! ",
+	"Á lancha rota calquera vento lle vén en contra…"
+]
+
+var _win_bottle_messages := [
+	"Un gotiño de augardente fai o home forte e valente (e deixa o estómago quente).",
+	"Xa se sabe que augardente e viño poñen o vello mociño.",
+	"A quen non quere viño, sete cuncas!",
+	"Beber, beber, ata máis non poder.",
+	"Allo crúo e viño puro pasan o porto seguro.",
+	"Xa se sabe o que din: Deixa o mar onde está; lávate en augardente que millor será",
+]
+
 var musicEvent: FmodEvent = null
 var newBottleSoundEvent: FmodEvent = null
 var emptyBottleSoundEvent: FmodEvent = null
@@ -86,6 +100,10 @@ func receive_bottle() -> void:
 	received_bottle_in_level = true
 	bottle_ui.visible = true
 	(fish_ui_panel.find_child("BottleFound")).visible = true
+	messages.visible = true
+	messages.text = "[color=#43ba85]%s[/color]" % [_win_bottle_messages[randi() % _win_bottle_messages.size()]]
+	await get_tree().create_timer(4.0).timeout
+	messages.visible = false
 	_update_bottle_sound(true)
 
 func get_random_for_level() -> FishData:
@@ -106,6 +124,10 @@ func update_life(damage := true) -> void:
 		player_life -= 1
 		var heart := _find_first_visible_heart()
 		if heart != null: heart.visible = false 
+		messages.visible = true
+		messages.text = "[color=#d65e5e]%s[/color]" % [_lose_life_messages[randi() % _lose_life_messages.size()]]
+		await get_tree().create_timer(4.0).timeout
+		messages.visible = false
 		_update_boat_health_sound(false)
 	
 func _find_first_visible_heart(visible := true) -> Node:
