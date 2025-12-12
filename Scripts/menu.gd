@@ -4,6 +4,7 @@ extends Control
 @onready var info_label: RichTextLabel = $ForegroundLayer/InfoLabel
 @onready var startBtn: Button = $ForegroundLayer/StartBtn
 @onready var tutorialBtn: Button = $ForegroundLayer/TutorialBtn
+@onready var tutorialPanel: Panel = $ForegroundLayer/Tutorial
 @export_file("*.tscn") var game_scene_path: String = "res://Scenes/main_scene.tscn"
 var clickSoundEvent: FmodEvent = null
 var fade_time := 0.25
@@ -77,3 +78,11 @@ func _init_sounds() -> void:
 func _update_sounds(start: bool) -> void:
 	if start:
 		clickSoundEvent.start()
+
+
+func _on_tutorial_btn_pressed() -> void:
+	tutorialPanel.visible = true
+
+
+func _on_close_tutorial_btn_pressed() -> void:
+	tutorialPanel.visible = false

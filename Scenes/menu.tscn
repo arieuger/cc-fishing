@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgmuix4dd38qq"]
+[gd_scene load_steps=7 format=3 uid="uid://dgmuix4dd38qq"]
 
 [ext_resource type="Script" uid="uid://d3d7pir4mlhjt" path="res://Scripts/menu.gd" id="1_lti8b"]
 [ext_resource type="Theme" uid="uid://b7fw18jc1ykgi" path="res://game_theme.tres" id="2_ouk20"]
 [ext_resource type="Texture2D" uid="uid://c5k8gcbv3uprk" path="res://Assets/nubes.png" id="3_4hy44"]
 [ext_resource type="Texture2D" uid="uid://fhfdw0ettj6" path="res://Assets/nubes-bck.png" id="4_ytr4m"]
 [ext_resource type="Material" uid="uid://dxfihkrqs1ael" path="res://Shaders/darken_shader_res.tres" id="5_ytr4m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwsa2"]
+bg_color = Color(0.12156863, 0.39215687, 0.4, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -117,6 +120,57 @@ theme_override_font_sizes/normal_font_size = 7
 text = "[Presiona espazo para continuar...]"
 horizontal_alignment = 1
 
+[node name="Tutorial" type="Panel" parent="ForegroundLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -88.0
+offset_right = 130.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ouk20")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwsa2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ForegroundLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.313431
+offset_top = 11.0
+offset_right = -9.313431
+offset_bottom = 127.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "Pesca os peixes sen perder todas as vidas.
+
+Usa as frechas para mover o barco polo mapa.
+
+Preme a barra espaciadora para iniciar a pesca. Aliña o rectángulo amarelo co vermello pulsando na barra para pescar un peixe.
+ 
+Unha vez que obteñas unha botella de augardente, preme \"x\" para bebela. Isto permitirache avanzar no xogo.
+"
+
+[node name="CloseTutorialBtn" type="Button" parent="ForegroundLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 44.0
+offset_right = 38.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ouk20")
+text = "Pechar"
+
 [node name="SirensSoundsEmitter" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Siren"
 event_guid = "{5cf61d52-88fe-470d-9066-76cb70f56e0a}"
@@ -125,3 +179,6 @@ autoplay = true
 [connection signal="mouse_entered" from="ForegroundLayer/StartBtn" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="ForegroundLayer/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="mouse_entered" from="ForegroundLayer/TutorialBtn" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="ForegroundLayer/TutorialBtn" to="." method="_on_tutorial_btn_pressed"]
+[connection signal="mouse_entered" from="ForegroundLayer/Tutorial/CloseTutorialBtn" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="ForegroundLayer/Tutorial/CloseTutorialBtn" to="." method="_on_close_tutorial_btn_pressed"]
