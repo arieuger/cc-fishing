@@ -396,6 +396,12 @@ z_index = 1
 position = Vector2(-12.5, -30)
 polygon = PackedVector2Array(2, 23, 18, 19, 40, 22, 52, 30, 52, 39, 44, 39, 40, 44, 17, 47, -13, 40, -13, 35, -8, 32)
 
+[node name="IslandCoastSound" type="FmodEventEmitter2D" parent="World/PlayZone/Island"]
+event_name = "event:/IslandCoast"
+event_guid = "{40af50c8-d6d7-4373-a268-434723c0b6e3}"
+autoplay = true
+position = Vector2(-15, 10)
+
 [node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
 position = Vector2(155, 195)
