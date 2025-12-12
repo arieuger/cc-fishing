@@ -11,6 +11,7 @@ var bottle_ui: TextureRect
 var fish_ui_panel: Panel
 var fishes_catched_counter: RichTextLabel
 var messages: RichTextLabel
+var musicEmitter: FmodEventEmitter2D
 
 var zone_level := 0
 var player_life := 4
@@ -58,6 +59,7 @@ func bind_game_scene(main_scene: Node) -> void:
 	fish_ui_panel = main_scene.get_node("UILayer/FishPanel")
 	fishes_catched_counter = main_scene.get_node("UILayer/FishesCounter")
 	messages = main_scene.get_node("UILayer/Messages")
+	musicEmitter = main_scene.get_node("World/PlayZone/Island/Music")	
 	
 func start_game() -> void:
 	fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], 0]
@@ -167,11 +169,8 @@ func _init_sounds() -> void:
 	boatCrashSoundEvent = FmodServer.create_event_instance("event:/BoatCrash")
 	boatRepairedSoundEvent = FmodServer.create_event_instance("event:/BoatRepaired")
 	
-	musicEvent = FmodServer.create_event_instance("event:/Music")
-	musicEvent.start()
-	
 func _update_music(level: float) -> void:
-	musicEvent.set_parameter_by_name('Level', level)
+	musicEmitter.set_parameter('Level', level)
 
 func _update_bottle_sound(start: bool) -> void:
 	if (start) :

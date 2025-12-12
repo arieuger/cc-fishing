@@ -402,6 +402,15 @@ event_guid = "{40af50c8-d6d7-4373-a268-434723c0b6e3}"
 autoplay = true
 position = Vector2(-15, 10)
 
+[node name="Music" type="FmodEventEmitter2D" parent="World/PlayZone/Island"]
+event_name = "event:/Music"
+event_guid = "{eab27bb6-2162-450b-872e-8f133184efbb}"
+autoplay = true
+fmod_parameters/Level/id = -5882419919554262688
+fmod_parameters/Level = 0
+fmod_parameters/Level/variant_type = 2
+position = Vector2(1, -5)
+
 [node name="Boat" type="CharacterBody2D" parent="World/PlayZone"]
 y_sort_enabled = true
 position = Vector2(155, 195)
