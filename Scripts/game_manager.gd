@@ -68,6 +68,7 @@ func start_game() -> void:
 
 func _process(delta: float) -> void:
 	if has_bottle and Input.is_action_just_pressed("drink"):
+		has_bottle = false
 		bottle_ui.visible = false
 		_update_bottle_sound(false)
 		buoys[zone_level].queue_free()
@@ -147,6 +148,62 @@ func update_life() -> void:
 	if player_life == 0:
 		if is_instance_valid(boat): boat.is_dead = true
 		get_tree().change_scene_to_file(game_scene_path)
+		
+func reset(full: bool = true) -> void:
+	zone_level = 0
+	player_life = 4
+	has_bottle = false
+	received_bottle_in_level = false
+	fishes_catched_by_level = 0
+
+	spawn_zones.clear()
+	trails.clear()
+
+	for k in buoys.keys():
+		var b := buoys[k]
+		if is_instance_valid(b):
+			b.queue_free()
+	buoys.clear()
+
+	trail_particles = null
+	boat = null
+
+	if is_instance_valid(messages):
+		messages.visible = false
+	if is_instance_valid(fish_ui_panel):
+		fish_ui_panel.visible = false
+	if is_instance_valid(bottle_ui):
+		bottle_ui.visible = false
+	if is_instance_valid(hearts_panel):
+		for h in hearts_panel.get_children():
+			h.visible = true
+
+	if is_instance_valid(fishes_catched_counter):
+		fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], 0]
+
+	if full and fish_database:
+		for f in fish_database.fishes:
+			f.used = false
+
+	if musicEvent != null:
+		musicEvent.release()
+		musicEvent = null
+
+	for ev in [newBottleSoundEvent, emptyBottleSoundEvent, boatCrashSoundEvent, boatRepairedSoundEvent]:
+		if ev != null:
+			ev.release()
+
+	newBottleSoundEvent = null
+	emptyBottleSoundEvent = null
+	boatCrashSoundEvent = null
+	boatRepairedSoundEvent = null
+
+	hearts_panel = null
+	bottle_ui = null
+	fish_ui_panel = null
+	fishes_catched_counter = null
+	messages = null
+	musicEmitter = null
 	
 func _find_first_visible_heart(visible := true) -> Node:
 	for h in hearts_panel.get_children():

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var label: RichTextLabel = $ForegroundLayer/IntroLabel
-@export_file("*.tscn") var game_scene_path: String = "res://Scenes/menu.tscn"
+@export_file("*.tscn") var start_scene_path: String = "res://Scenes/menu.tscn"
 var fade_time := 0.25
 var instantiated := false
 
@@ -34,7 +34,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func _show_next_line() -> void:
 	if index >= lines.size():
-		# get_tree().change_scene_to_file(game_scene_path)
+		GameManager.reset()
+		get_tree().change_scene_to_file(start_scene_path)
 		return
 		
 	busy = true
