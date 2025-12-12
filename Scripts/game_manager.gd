@@ -3,6 +3,7 @@ extends Node
 @onready var hearts_panel: BoxContainer = $/root/MainScene/UILayer/FullHearts
 @onready var bottle_ui: TextureRect = $/root/MainScene/UILayer/FullBottle
 @onready var fish_ui_panel: Panel = $/root/MainScene/UILayer/FishPanel
+@onready var fishes_catched_counter: RichTextLabel = $/root/MainScene/UILayer/FishesCounter
 @export var fish_database: FishDatabase
 @export var minimum_fishes_to_bottle: Dictionary[int, int]
 @export var drunk_amount_by_level: Dictionary[int, float] = {}
@@ -17,6 +18,11 @@ var received_bottle_in_level := false
 var fishes_catched_by_level := 0
 var trails: Array[SeaTrailFollow] = []
 var trail_particles: SeaTrailParticles
+var _level_colors := [
+	"#43ba85",
+	"#c2b661",
+	"#d65e5e"
+]
 
 var musicEvent: FmodEvent = null
 var newBottleSoundEvent: FmodEvent = null
@@ -25,6 +31,7 @@ var boatCrashSoundEvent: FmodEvent = null
 var boatRepairedSoundEvent: FmodEvent = null
 
 func _ready() -> void:
+	fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], 0]
 	_init_sounds()
 
 func _process(delta: float) -> void:
@@ -36,6 +43,7 @@ func _process(delta: float) -> void:
 		received_bottle_in_level = false
 		fishes_catched_by_level = 0
 		boat.drunk_amount = drunk_amount_by_level[zone_level]
+		fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], fishes_catched_by_level]
 		# if not spawn_zones[zone_level - 1].destroy_fishes():
 		# 	spawn_zones[zone_level].spawn_fish()
 		_update_music(zone_level)
@@ -43,6 +51,7 @@ func _process(delta: float) -> void:
 func catch_fish(fish_data: FishData):
 	boat.showing_ui = true
 	fishes_catched_by_level += 1
+	fishes_catched_counter.text = "[color=%s]%s/10[/color]" % [_level_colors[zone_level], fishes_catched_by_level]
 	fish_ui_panel.visible = true
 	(fish_ui_panel.find_child("FishTitle") as RichTextLabel).text = fish_data.display_name
 	(fish_ui_panel.find_child("FishDescription") as RichTextLabel).text = fish_data.description

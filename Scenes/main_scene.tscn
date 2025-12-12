@@ -832,6 +832,15 @@ texture = ExtResource("31_viu5a")
 stretch_mode = 2
 script = ExtResource("32_b00ha")
 
+[node name="FishesCounter" type="RichTextLabel" parent="UILayer"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 47.0
+offset_bottom = 47.0
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "0/10"
+
 [connection signal="mouse_entered" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_mouse_entered"]
 [connection signal="pressed" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_close_btn_pressed"]
 [connection signal="ready" from="UILayer/FishPanel/CloseBtn" to="UILayer/FishPanel" method="_on_ready"]
